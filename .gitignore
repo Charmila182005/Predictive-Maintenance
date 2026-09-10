@@ -1,0 +1,115 @@
+# ─────────────────────────────────────────────
+# Python
+# ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# ─────────────────────────────────────────────
+# Virtual Environments
+# ─────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# ─────────────────────────────────────────────
+# Environment / Secrets
+# ─────────────────────────────────────────────
+.env
+*.env
+.env.*
+secrets.yaml
+secrets.json
+
+# ─────────────────────────────────────────────
+# Jupyter Notebooks
+# ─────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ─────────────────────────────────────────────
+# IDEs & Editors
+# ─────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ─────────────────────────────────────────────
+# OS artefacts
+# ─────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ─────────────────────────────────────────────
+# Data files (keep folder structure, ignore large files)
+# ─────────────────────────────────────────────
+# Raw source files — never commit
+data/raw/
+# Processed / interim outputs — never commit
+data/processed/
+data/interim/
+# Large binary / tabular formats anywhere under data/
+data/**/*.csv
+data/**/*.tsv
+data/**/*.parquet
+data/**/*.feather
+data/**/*.h5
+data/**/*.hdf5
+data/**/*.zip
+data/**/*.tar.gz
+data/**/*.gz
+# Scoped JSON exclusion: only exclude large JSON dumps in raw & processed;
+# small metadata JSON files at data/ root (e.g. dataset_info.json) ARE tracked.
+data/raw/**/*.json
+data/processed/**/*.json
+
+# ─────────────────────────────────────────────
+# Logs & outputs
+# ─────────────────────────────────────────────
+logs/
+*.log
+runs/
+mlruns/
+outputs/
+artifacts/
