@@ -1,0 +1,835 @@
+{
+  "project_root": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance",
+  "files": [
+    {
+      "relative_path": ".dockerignore",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\.dockerignore",
+      "bytes": 89,
+      "sha256": "b7104f3b819e32ae2652c1fb8550ebb9335934e6cc9e922196ec69bf4e69ee08"
+    },
+    {
+      "relative_path": ".env.example",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\.env.example",
+      "bytes": 433,
+      "sha256": "f9f9c0958ef3eb24f36c331baff1682c49468722c1a1adad487f7c159a745f72"
+    },
+    {
+      "relative_path": ".gitignore",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\.gitignore",
+      "bytes": 146,
+      "sha256": "540a8077177523c0c7274ea9576c1f396187c779c99297da68d551e3d57b970a"
+    },
+    {
+      "relative_path": "configs/inference.yaml",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\configs\\inference.yaml",
+      "bytes": 170,
+      "sha256": "638e0d6eaa72f292a0cd52f5ed85adc8b11b5acc2a730e8782d636db3324c466"
+    },
+    {
+      "relative_path": "configs/maintenance_rules.yaml",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\configs\\maintenance_rules.yaml",
+      "bytes": 905,
+      "sha256": "40884e2af145e057e706f01210ee053755ba4ab6f88ffa8b56e4755e1bee9de6"
+    },
+    {
+      "relative_path": "configs/training.yaml",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\configs\\training.yaml",
+      "bytes": 260,
+      "sha256": "2fc0cd97a390e7765996a7844e785d8a0a0e17a64c31851acb18420d39d4bfcc"
+    },
+    {
+      "relative_path": "data/DATA_SOURCES.md",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\data\\DATA_SOURCES.md",
+      "bytes": 2789,
+      "sha256": "727c722ef688f3eaf9023fe203521bc903d13c388061f917540eb60c6284fe17"
+    },
+    {
+      "relative_path": "data/processed/split_indices.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\data\\processed\\split_indices.json",
+      "bytes": 108954,
+      "sha256": "9fcaf888e7e8baba64a93ba93e829bbcd7e9d7219b7df2099e263b59a233b929"
+    },
+    {
+      "relative_path": "data/processed/test.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\data\\processed\\test.csv",
+      "bytes": 90912,
+      "sha256": "0ce4990bcc0db78d8a3d1902d2de56b25248d11b5f681b809557d0b5e9b1279b"
+    },
+    {
+      "relative_path": "data/processed/train.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\data\\processed\\train.csv",
+      "bytes": 272352,
+      "sha256": "f05f83fee9fff623d452f5128a972f0f18d712a1de9be939df72ec72f3549300"
+    },
+    {
+      "relative_path": "data/processed/validation.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\data\\processed\\validation.csv",
+      "bytes": 90912,
+      "sha256": "c820573e583e942e8bfb0aada8d7c3e7fcaac33fd2013f070ea7498a721309fa"
+    },
+    {
+      "relative_path": "data/raw/ai4i2020.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\data\\raw\\ai4i2020.csv",
+      "bytes": 522048,
+      "sha256": "dc6630cd9b1f0f853922fad78a1b6436570d3f1ec863f1dd5c4340ac56bc8a8e"
+    },
+    {
+      "relative_path": "data/raw/ai4i2020_uci_original.zip",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\data\\raw\\ai4i2020_uci_original.zip",
+      "bytes": 522170,
+      "sha256": "f601f14294bcf190f9d720676b7f0aea46a26cde9ab8ebc7b4f8174d9d26b252"
+    },
+    {
+      "relative_path": "data/raw/manifest.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\data\\raw\\manifest.json",
+      "bytes": 1127,
+      "sha256": "f20c9f76468929049ca7749c61e78c462796128610b6637b8890667ab004fc4e"
+    },
+    {
+      "relative_path": "Dockerfile",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\Dockerfile",
+      "bytes": 844,
+      "sha256": "68074a259426118d7931914afc66c321b3846a11acf1c5962c1c4d446edebb0a"
+    },
+    {
+      "relative_path": "examples/batch_input.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\examples\\batch_input.csv",
+      "bytes": 310,
+      "sha256": "48ee827edcbc17b63012d21bc15e5391505db8e5a4161234d33e93e0a064339b"
+    },
+    {
+      "relative_path": "examples/batch_output_5dd2633c.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\examples\\batch_output_5dd2633c.csv",
+      "bytes": 25461,
+      "sha256": "209c3f727d351fc2b3ccc1a56ccb9aed7b4cb8c37eebf1eb5c2c670757231a74"
+    },
+    {
+      "relative_path": "examples/high_risk_input.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\examples\\high_risk_input.json",
+      "bytes": 215,
+      "sha256": "1d892b42ef2713dd2e427b8542a7a78104792a5ccac69dc94c26a28b4b1a7416"
+    },
+    {
+      "relative_path": "examples/high_risk_output.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\examples\\high_risk_output.json",
+      "bytes": 9116,
+      "sha256": "81fce19594d2ba0452f656b4fe5139e0863918a895df53e466bab7065d24058f"
+    },
+    {
+      "relative_path": "examples/manual_input.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\examples\\manual_input.json",
+      "bytes": 219,
+      "sha256": "ae7281d3b9617c2ca534b071e5e6945afdd62ad2ffcb7f70149aa63621193b8f"
+    },
+    {
+      "relative_path": "examples/sample_output.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\examples\\sample_output.json",
+      "bytes": 8902,
+      "sha256": "5ac5005c2dc9e3d6fedb1edd2a6f44be97f41d0c17c0f88c8fd193a60c971906"
+    },
+    {
+      "relative_path": "FACTORY_DEPLOYMENT_CHECKLIST.md",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\FACTORY_DEPLOYMENT_CHECKLIST.md",
+      "bytes": 4781,
+      "sha256": "7d6e94e0ff9e50938cbfdb7715055e3532bbd279c8214fa080e33bf3fe0392c4"
+    },
+    {
+      "relative_path": "logs/api_service.log",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\logs\\api_service.log",
+      "bytes": 1173,
+      "sha256": "204748fa3c99534e8f33d2045ae166aac86b25b1ca27a31174812a6d22168b2e"
+    },
+    {
+      "relative_path": "logs/error.log",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\logs\\error.log",
+      "bytes": 70061,
+      "sha256": "bbe3ebdb728e5f169158fd6e9975f19081eb25c6157f3c202c3e371af22c3852"
+    },
+    {
+      "relative_path": "logs/feedback.jsonl",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\logs\\feedback.jsonl",
+      "bytes": 374,
+      "sha256": "0247b66fd8c07c61697ae2e426a91b4ef7a830b9be0dfbeb042ee3fd72932557"
+    },
+    {
+      "relative_path": "logs/inference.log",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\logs\\inference.log",
+      "bytes": 25129,
+      "sha256": "00c2de15724b86b0331f7945c0ce2bb6049989cb20661d0c062b1e98de415564"
+    },
+    {
+      "relative_path": "logs/training.log",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\logs\\training.log",
+      "bytes": 188897,
+      "sha256": "73c5dcbb120f4fc7e95fac3dcf50d9964aa396f24fb750671a81e8cc648f8254"
+    },
+    {
+      "relative_path": "logs/ui_service.log",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\logs\\ui_service.log",
+      "bytes": 93,
+      "sha256": "5baef0796aeca3dbc96f0cc83a3f64192381727f46b090cb28ab141dfb2ece9f"
+    },
+    {
+      "relative_path": "models/anomaly_model.joblib",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\models\\anomaly_model.joblib",
+      "bytes": 3710076,
+      "sha256": "9e8d706f8a248b245d0f6289f1aa2943350937ecfac0a8c95cf947dfbf7ee932"
+    },
+    {
+      "relative_path": "models/artifact_manifest.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\models\\artifact_manifest.json",
+      "bytes": 924,
+      "sha256": "20899a51e8ed33b543db9799d7f4c0ff47bfa557403d7018a0d6068eeffcdf3a"
+    },
+    {
+      "relative_path": "models/explanation_baseline.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\models\\explanation_baseline.json",
+      "bytes": 162,
+      "sha256": "d23d6c14c309b8e3d4a64f0f80a1078e91275d6f84bc3f30d6bc4839b65a0cec"
+    },
+    {
+      "relative_path": "models/failure_mode_pipeline.joblib",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\models\\failure_mode_pipeline.joblib",
+      "bytes": 780247,
+      "sha256": "3b242c73ad19c5ddffc7f6edf2a50eefa2936ea2330b1e62a82f9882dc322132"
+    },
+    {
+      "relative_path": "models/model_metadata.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\models\\model_metadata.json",
+      "bytes": 6189,
+      "sha256": "9deba066c2419b1684c24da979d935a94dbabcb91a3a83eea73a72120fe24170"
+    },
+    {
+      "relative_path": "models/model_pipeline.joblib",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\models\\model_pipeline.joblib",
+      "bytes": 2293067,
+      "sha256": "1b1610fa1d042df84c7ba853b1febdf33467d117e6a10728a34da7b9a9143742"
+    },
+    {
+      "relative_path": "models/threshold.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\models\\threshold.json",
+      "bytes": 498,
+      "sha256": "15c455138c6eb38347a7fb06b894243913633fa3d5030ac0322c6a3923e185bb"
+    },
+    {
+      "relative_path": "models/training_profile.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\models\\training_profile.json",
+      "bytes": 1412,
+      "sha256": "36a89b01c6addc74c57b7faa5ef66469f51042d21f0be5e820f9fc52d3da1c42"
+    },
+    {
+      "relative_path": "notebooks/predictive_maintenance_analysis.ipynb",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\notebooks\\predictive_maintenance_analysis.ipynb",
+      "bytes": 764751,
+      "sha256": "e9c9084efe9ff4402a2e0476f799456c85a764273592bbce3e0e302cc7f4a7b6"
+    },
+    {
+      "relative_path": "pyproject.toml",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\pyproject.toml",
+      "bytes": 545,
+      "sha256": "87ef7d40f56248281b3e511608823f2d9d7036e3b20c412fc05e0be6fd4bb647"
+    },
+    {
+      "relative_path": "README.md",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\README.md",
+      "bytes": 14213,
+      "sha256": "ac50068c4d48b5f8780bb837e778ebb1b46c3f3df31d6d28ecca60b0411585f4"
+    },
+    {
+      "relative_path": "reports/api_openapi.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\api_openapi.json",
+      "bytes": 25502,
+      "sha256": "15cc0c7f34d76ec13c5f75488eda158e70fab7ac09d19ad964ecdd9e1ad7dbd2"
+    },
+    {
+      "relative_path": "reports/data_quality_report.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\data_quality_report.json",
+      "bytes": 5369,
+      "sha256": "c3544680b57323bd5e7c2e32b607d55e3e23b5d5684e6e1c25759c9254e6c688"
+    },
+    {
+      "relative_path": "reports/dataset_inventory.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\dataset_inventory.json",
+      "bytes": 226,
+      "sha256": "a1bc85932613599fbd116da62afd5aa2fe87dd9d2cd29f2d4feeb6e9a4b8471b"
+    },
+    {
+      "relative_path": "reports/figures/anomaly_score_distribution.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\anomaly_score_distribution.png",
+      "bytes": 35778,
+      "sha256": "94c430040804db7800f957a49325ed3893640ca27d9e429b70b59ba386728606"
+    },
+    {
+      "relative_path": "reports/figures/calibration_curve.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\calibration_curve.png",
+      "bytes": 55993,
+      "sha256": "6a4e51858c029fcb3833490d3793f420eb93e726c6ee3700fd39709c88d0c359"
+    },
+    {
+      "relative_path": "reports/figures/confusion_matrix.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\confusion_matrix.png",
+      "bytes": 32523,
+      "sha256": "ff84f3652b894176d5a17cf4d5ad8ad3ff0a5017e2f80704dc6cc103a22be6ae"
+    },
+    {
+      "relative_path": "reports/figures/correlation_matrix.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\correlation_matrix.png",
+      "bytes": 82513,
+      "sha256": "2a47263add33d46ff092c4e12e11704a0e68da253d8a313cec638f88b8a64352"
+    },
+    {
+      "relative_path": "reports/figures/failure_mode_results.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\failure_mode_results.png",
+      "bytes": 29821,
+      "sha256": "c6b48ac582bba2615dceff80e81a775a299c0adbb397f74a46b1f536f4e3c52c"
+    },
+    {
+      "relative_path": "reports/figures/feature_importance.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\feature_importance.png",
+      "bytes": 37811,
+      "sha256": "2c95c755f369be7b2c78a80a263432d477777254d7ffa95417d2617b6be323b6"
+    },
+    {
+      "relative_path": "reports/figures/numeric_feature_distributions.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\numeric_feature_distributions.png",
+      "bytes": 122183,
+      "sha256": "f2008bbf356515adcd41d36a382469d23e6307f54a2100c23f65b4aaa786497f"
+    },
+    {
+      "relative_path": "reports/figures/precision_recall_curve.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\precision_recall_curve.png",
+      "bytes": 35710,
+      "sha256": "8423cc66b5bb9d614a027649675ddf4f38eedc941131d552e780b44e9d3f5c1a"
+    },
+    {
+      "relative_path": "reports/figures/roc_curve.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\roc_curve.png",
+      "bytes": 35742,
+      "sha256": "cb79c196c8b6a87ffa597c3a49d8ecfbe0d764278056f75a059b0ba90a614ac3"
+    },
+    {
+      "relative_path": "reports/figures/target_distributions.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures\\target_distributions.png",
+      "bytes": 39119,
+      "sha256": "f9b17501ee30bc6d183701eb6a0f8246e13d775e2ca305e6f78036e72ca42c90"
+    },
+    {
+      "relative_path": "reports/figures_review.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\figures_review.png",
+      "bytes": 329343,
+      "sha256": "b6b5cbe47a9ee16b88912188283247d07827a909efac8f7e35eda2282fbe9e4c"
+    },
+    {
+      "relative_path": "reports/final_report.md",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\final_report.md",
+      "bytes": 17276,
+      "sha256": "af146fac5458fd83ccf2e472f36b785c78c8ddc6540556c303ecb4a2096a7a06"
+    },
+    {
+      "relative_path": "reports/input_schema.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\input_schema.json",
+      "bytes": 2496,
+      "sha256": "03b9a20e73c08d5b25b4c8a2c5efb18847810dc741e5d2a13b27857d884401eb"
+    },
+    {
+      "relative_path": "reports/metrics/anomaly_metrics.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\anomaly_metrics.json",
+      "bytes": 447,
+      "sha256": "47d17fbf906a3370fa7a506e7d75a620d9682fa2c5b2f4612d13dbc578187b16"
+    },
+    {
+      "relative_path": "reports/metrics/artifact_verification.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\artifact_verification.json",
+      "bytes": 3603,
+      "sha256": "142def825a4e1d549e14a7e071e996ce388dbcd323bb5f35b4a408abbc087b61"
+    },
+    {
+      "relative_path": "reports/metrics/cross_validation.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\cross_validation.csv",
+      "bytes": 17690,
+      "sha256": "083430d5c8b83ba7dc77cfb6e840a4746d25ad10e91e540859a4b95f34d20665"
+    },
+    {
+      "relative_path": "reports/metrics/docker_verification.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\docker_verification.json",
+      "bytes": 670,
+      "sha256": "0e9911dc58993b1fd048c2f776d26bbb5cfe2aa535d20a3ebce0a8ba3715dfe9"
+    },
+    {
+      "relative_path": "reports/metrics/failure_mode_metrics.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\failure_mode_metrics.csv",
+      "bytes": 1991,
+      "sha256": "bccdec2b7142479320ce9ae2b1f9a7e0c392a9b3112304f274dd17d4aaaf7e11"
+    },
+    {
+      "relative_path": "reports/metrics/failure_mode_metrics.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\failure_mode_metrics.json",
+      "bytes": 7560,
+      "sha256": "cf0dbbd94d5b8199c44d9964c38350caf3e07b8f2b2a39a6931fba9d6dad2693"
+    },
+    {
+      "relative_path": "reports/metrics/failure_mode_validation_metrics.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\failure_mode_validation_metrics.json",
+      "bytes": 3798,
+      "sha256": "04c9c72f8563d12b495689b760c1b3112eb0c70240417d62a2a7001d8cd82008"
+    },
+    {
+      "relative_path": "reports/metrics/global_feature_importance.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\global_feature_importance.csv",
+      "bytes": 370,
+      "sha256": "8686161d327f8026eeea776d1d19c2b601e1219bc2ff9789bae873301338565b"
+    },
+    {
+      "relative_path": "reports/metrics/live_service_verification.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\live_service_verification.json",
+      "bytes": 1135,
+      "sha256": "7515104a5f34d033cd546f314633ad5acb537092991cdb3b40b618c11a565503"
+    },
+    {
+      "relative_path": "reports/metrics/local_explanations.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\local_explanations.json",
+      "bytes": 3808,
+      "sha256": "d8f395d58dd0e3e580f096f1ea33627c543eec1cd052a285e49fb631e0da7d05"
+    },
+    {
+      "relative_path": "reports/metrics/model_comparison.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\model_comparison.csv",
+      "bytes": 5286,
+      "sha256": "b06896371bf5c901657a073d0ac3db91390865cbef372a88320d0fbdc5c0a8d0"
+    },
+    {
+      "relative_path": "reports/metrics/monitoring_snapshot.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\monitoring_snapshot.json",
+      "bytes": 1784,
+      "sha256": "c018eada789a5de496f049cfb8a920ce221f387df2282e022869bf558fe5ced2"
+    },
+    {
+      "relative_path": "reports/metrics/notebook_verification.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\notebook_verification.json",
+      "bytes": 422,
+      "sha256": "209d81ba69c568c7c25ffd8382a5121c3a5cec5e308fcbc1e61d805b4bc2022b"
+    },
+    {
+      "relative_path": "reports/metrics/overall_metrics.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\overall_metrics.csv",
+      "bytes": 700,
+      "sha256": "5c6c1b3ee1b7a19c00a79134dd02de6ee0b69cd2a6361aadff5e8d207659cd56"
+    },
+    {
+      "relative_path": "reports/metrics/pytest_results.xml",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\pytest_results.xml",
+      "bytes": 4729,
+      "sha256": "47586d46da5a2e34fc9338cf7a3f9d7d15ad64998e29b13ee177570e45e982bc"
+    },
+    {
+      "relative_path": "reports/metrics/random_forest_search.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\random_forest_search.csv",
+      "bytes": 5459,
+      "sha256": "d7b6b8493b40e7e53939c108ea22d361dea1fd8a541146c16c1009be123128c2"
+    },
+    {
+      "relative_path": "reports/metrics/recomputed_test_metrics.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\recomputed_test_metrics.json",
+      "bytes": 1312,
+      "sha256": "7719f089e7ea7b7ad15efdb24bc3c0c582d46d20c94e4c4ad3e4fcd6440e75a4"
+    },
+    {
+      "relative_path": "reports/metrics/selection_decision_before_test.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\selection_decision_before_test.json",
+      "bytes": 1877,
+      "sha256": "43f7d4474ab7c24a0141e01567637ac532628dd51666effb364aaa1879ff3496"
+    },
+    {
+      "relative_path": "reports/metrics/shap_explanations.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\shap_explanations.json",
+      "bytes": 1421,
+      "sha256": "8d997b4cece9ec03725ed4564f9bb99090f00a61f19560cc327418b086e597db"
+    },
+    {
+      "relative_path": "reports/metrics/test_metrics.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\test_metrics.json",
+      "bytes": 1895,
+      "sha256": "a7251f056c92051369304e7f1e37f520e4ad897933e299daea651d76f12a5495"
+    },
+    {
+      "relative_path": "reports/metrics/test_metrics_by_product_type.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\test_metrics_by_product_type.json",
+      "bytes": 4545,
+      "sha256": "befa67da17acdc2c4049dd77df2ea829deaede558be6d386cd981c8b8c5d3f12"
+    },
+    {
+      "relative_path": "reports/metrics/test_predictions.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\test_predictions.csv",
+      "bytes": 275716,
+      "sha256": "69ea3f4458d0a8c19d1004b07a40e992478b18e97505fa43e0aa87549ddaeb91"
+    },
+    {
+      "relative_path": "reports/metrics/validation_metrics.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\validation_metrics.json",
+      "bytes": 1308,
+      "sha256": "abedaa984f0cd0f9ca72b35fe6f4bb2d1a1013dad460b95eaae1b16a6db487b0"
+    },
+    {
+      "relative_path": "reports/metrics/validation_threshold_search.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\validation_threshold_search.csv",
+      "bytes": 39592,
+      "sha256": "10b8dba2700eaf955a6aaa3bed0d6e6b570f67362077937e513c867b3ec7bd3b"
+    },
+    {
+      "relative_path": "reports/metrics/xgboost_search.csv",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\metrics\\xgboost_search.csv",
+      "bytes": 5602,
+      "sha256": "0bd4891badc41b975a750f902b7598887dc429c664dcb4ee2c63864d36fbeca9"
+    },
+    {
+      "relative_path": "reports/model_card.md",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\model_card.md",
+      "bytes": 4239,
+      "sha256": "6da5f043762152b25d4d09f9396b128d78f484932134fc286923c989c663d8fa"
+    },
+    {
+      "relative_path": "reports/output_schema.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\output_schema.json",
+      "bytes": 6012,
+      "sha256": "9fcd3684b47a22f68854c131f5db614d5e1195639525bece546401e5ea70e316"
+    },
+    {
+      "relative_path": "reports/references/cognizant project pdf 1.pdf",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\cognizant project pdf 1.pdf",
+      "bytes": 32884,
+      "sha256": "fd5bed3cbf7bd4e09b5a97407c412fc8617bc34ffff3466465a67891be5becab"
+    },
+    {
+      "relative_path": "reports/references/cognizant project pdf 1.txt",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\cognizant project pdf 1.txt",
+      "bytes": 5967,
+      "sha256": "f90a80212d7c495c3ad387c7ff29c3ec809ac92605d43d41cddbba91f4dba5c2"
+    },
+    {
+      "relative_path": "reports/references/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING.pdf",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING.pdf",
+      "bytes": 46994,
+      "sha256": "a53348bdce8377847dc6054ce41d4b2f3a39245f160315a7e9e24c65494da33c"
+    },
+    {
+      "relative_path": "reports/references/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING.txt",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING.txt",
+      "bytes": 16661,
+      "sha256": "6d59e1f799c5f29236e484af0d3ea8c29de50bcab9dfef0e4d6da0aa712f994b"
+    },
+    {
+      "relative_path": "reports/references/rendered/cognizant project pdf 1_contact.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\cognizant project pdf 1_contact.png",
+      "bytes": 240808,
+      "sha256": "a39cc686eb94c9d3288d7f133025aaaf5a0d139837074225f31cc7bfc6c66877"
+    },
+    {
+      "relative_path": "reports/references/rendered/cognizant project pdf 1_page_1.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\cognizant project pdf 1_page_1.png",
+      "bytes": 172825,
+      "sha256": "8a5b83cbc32edd5ae76ddb7d2ccc9bdd5e599d8e1fba9457985ec8585c1bed26"
+    },
+    {
+      "relative_path": "reports/references/rendered/cognizant project pdf 1_page_2.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\cognizant project pdf 1_page_2.png",
+      "bytes": 155991,
+      "sha256": "4a95e563800a4ca293100581c220def646a2444c1d47856f790c2d881205a164"
+    },
+    {
+      "relative_path": "reports/references/rendered/cognizant project pdf 1_page_3.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\cognizant project pdf 1_page_3.png",
+      "bytes": 140314,
+      "sha256": "fc2967b2087d48b31bbdd179d708c75b3d814e009508d541f73532c2c993b2f1"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_contact.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_contact.png",
+      "bytes": 637033,
+      "sha256": "81f035eb25322934dcbee260017a8f35c1374f92d4a12eb23d63d6bce8d434e9"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_1.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_1.png",
+      "bytes": 58169,
+      "sha256": "2a22f4ec546001aa6c8af1399ef225fd29da97461e0be214d610ddeed19e47ae"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_10.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_10.png",
+      "bytes": 112512,
+      "sha256": "9c14556f20afbdaf6b2fe28c123f291cbeac9d8f6b06295c197262da85a641f2"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_2.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_2.png",
+      "bytes": 155713,
+      "sha256": "5941ff54c4ce674f48f24457f45de48c7c4f8e656b052615b2c8dd0b788c1e9c"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_3.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_3.png",
+      "bytes": 137833,
+      "sha256": "6763e96a1a786e76ae32c517df98404819f762d37404ac5e8e0d35712458edfe"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_4.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_4.png",
+      "bytes": 109499,
+      "sha256": "58081ef98bc2055b74ca28938f50efaecefe597a26ba8f5343e6d33cfe12983d"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_5.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_5.png",
+      "bytes": 141464,
+      "sha256": "668ceb750a001ee4a646c467c2541d4d79a1bd69e09767d38c07afe0cb62098c"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_6.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_6.png",
+      "bytes": 117558,
+      "sha256": "142d550bda828a41f43a81f06833e142b36f604e79f9146b51e4219d6d6451f4"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_7.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_7.png",
+      "bytes": 117647,
+      "sha256": "c7d415e8f3238467e2d799a2a5f750e3a34468626bea6d0cb48de1080df7dd8f"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_8.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_8.png",
+      "bytes": 139306,
+      "sha256": "7e682d007a5532fbd275d1e52b94fba9b4c4065ca702918d0079f77e7a36e96f"
+    },
+    {
+      "relative_path": "reports/references/rendered/Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_9.png",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\rendered\\Predictive_Maintenance_Agent_GENERIC_MANUFACTURING_page_9.png",
+      "bytes": 134141,
+      "sha256": "2d4e7367ee272032ff12e575db087b80194f82813368e5a54420d75eb5b4c8b3"
+    },
+    {
+      "relative_path": "reports/references/source_documents.json",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\source_documents.json",
+      "bytes": 789,
+      "sha256": "a46af273a84796cca2723ea6406b53dfe89343aff4162f8f6c2ecb515f6737a6"
+    },
+    {
+      "relative_path": "reports/references/USER_REQUEST.txt",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\references\\USER_REQUEST.txt",
+      "bytes": 20720,
+      "sha256": "54a0e32b0404ed6d5c329c3de06f70ac5cb4ae1ea0cff07591dc1e167aa2bdd6"
+    },
+    {
+      "relative_path": "reports/requirements_traceability.md",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\reports\\requirements_traceability.md",
+      "bytes": 2916,
+      "sha256": "0b975781ac90aac0cfbd5f9518d419bdb855937f6f0aad17701f3d25d1601600"
+    },
+    {
+      "relative_path": "requirements.lock.txt",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\requirements.lock.txt",
+      "bytes": 1806,
+      "sha256": "815b20e52626f85d7c39b16ce7b768aaffe9893a072e65f08698e5fb3f096efa"
+    },
+    {
+      "relative_path": "requirements.txt",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\requirements.txt",
+      "bytes": 356,
+      "sha256": "089cdeb40661e8e901a7c7251d82778bc909f6a68646285560498aa282f9c3bf"
+    },
+    {
+      "relative_path": "scripts/build_reports.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\scripts\\build_reports.py",
+      "bytes": 28442,
+      "sha256": "033d17c5c1b1538663b1a914a40735ab46ec5dcd1820b4cbbf54734d74d73040"
+    },
+    {
+      "relative_path": "scripts/execute_notebook.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\scripts\\execute_notebook.py",
+      "bytes": 8130,
+      "sha256": "3ceb3137e6f008d3d71d72083e266200a5e3790ede8b83dc28356e87083fafbb"
+    },
+    {
+      "relative_path": "scripts/package_project.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\scripts\\package_project.py",
+      "bytes": 2976,
+      "sha256": "022b2e5faad0777cf0876f5a4ef00dd6226adbcb9d4d7fcfd7dc565ca1fe6eec"
+    },
+    {
+      "relative_path": "scripts/prepare_data.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\scripts\\prepare_data.py",
+      "bytes": 3370,
+      "sha256": "8308ad146c6c85ad6c47ad30b2200e2dd117b63bf2013148be9ab51ebc95218e"
+    },
+    {
+      "relative_path": "scripts/render_review.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\scripts\\render_review.py",
+      "bytes": 1778,
+      "sha256": "44fc3b15f3cc2a36833ebb526fa25cb2bf9246740e16fbd20cfc60c3898c434d"
+    },
+    {
+      "relative_path": "scripts/run_logged.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\scripts\\run_logged.py",
+      "bytes": 1743,
+      "sha256": "a8c5917ad1e2a9e4f004e67a17ab40585a54e01749ecf6cbf86ed7eddb73b3ac"
+    },
+    {
+      "relative_path": "scripts/verify_artifacts.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\scripts\\verify_artifacts.py",
+      "bytes": 3684,
+      "sha256": "e00380afa94ab50111709d560871ec75dfa733ea5a4b97f2d29c0ef6719fbec7"
+    },
+    {
+      "relative_path": "scripts/verify_docker.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\scripts\\verify_docker.py",
+      "bytes": 4145,
+      "sha256": "b1d2ae006cf4ab6ee6758be13e35123d527ccec690f36c007578670fa5b8fec3"
+    },
+    {
+      "relative_path": "scripts/verify_services.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\scripts\\verify_services.py",
+      "bytes": 4987,
+      "sha256": "1e9e7c4457daba82e2c74434ba88a3e70aa44614cda56be66e0eeb766c309bd4"
+    },
+    {
+      "relative_path": "src/__init__.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\__init__.py",
+      "bytes": 65,
+      "sha256": "237cbc92cc3b7587cd49477d92416ab5eeeb5717dad7dd3746264c3af66cd74e"
+    },
+    {
+      "relative_path": "src/adapters.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\adapters.py",
+      "bytes": 2040,
+      "sha256": "6e2ca77cfaa7de6bdbf251dae128ad96f639d5cdedb940d641c638b2132e81b2"
+    },
+    {
+      "relative_path": "src/anomaly_detection.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\anomaly_detection.py",
+      "bytes": 871,
+      "sha256": "aab106a4b0ccc0893764d93f309ddb64a34ec7d3dc71314adae72342179dd09a"
+    },
+    {
+      "relative_path": "src/api.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\api.py",
+      "bytes": 5382,
+      "sha256": "a6c003420c10e487033c495351c0bb084030699d01d39513048e558d8618c778"
+    },
+    {
+      "relative_path": "src/common.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\common.py",
+      "bytes": 2041,
+      "sha256": "b3a650cd71ea0b569b22fc2a691126fd891e4463f534e23363dd392ae414bee2"
+    },
+    {
+      "relative_path": "src/condition_engine.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\condition_engine.py",
+      "bytes": 1796,
+      "sha256": "6bf08b34bec809c4fec4784d81b424e5cd742a0bc5e5a6ebe96393eee960b334"
+    },
+    {
+      "relative_path": "src/data_validation.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\data_validation.py",
+      "bytes": 4247,
+      "sha256": "5bf9d217b5d74e7e57355085c5290ce7b1fac02fe645e84253af003713de98ac"
+    },
+    {
+      "relative_path": "src/evaluate.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\evaluate.py",
+      "bytes": 4272,
+      "sha256": "64ee085df86cc22d4faab18dc9e158a598af7298e515b401b42a7f033ac3192c"
+    },
+    {
+      "relative_path": "src/explain.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\explain.py",
+      "bytes": 5534,
+      "sha256": "369348b73826b6a6524f55e2fe2f61a2367ef820d41ec48089e9058018433350"
+    },
+    {
+      "relative_path": "src/failure_mode_model.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\failure_mode_model.py",
+      "bytes": 3240,
+      "sha256": "da64bfab6f1179b336179b2fe8b3da9750499c034b87f7c1b4a071ca37c64d3a"
+    },
+    {
+      "relative_path": "src/feature_engineering.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\feature_engineering.py",
+      "bytes": 3699,
+      "sha256": "78541954c9d3158c076d87e81663bc3603b983a4221a5fd7d635313c99c311b3"
+    },
+    {
+      "relative_path": "src/monitoring.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\monitoring.py",
+      "bytes": 4581,
+      "sha256": "593be41f0f5a94d45ba700415350bd63da2389a04982f08811c9ba53c67e7b26"
+    },
+    {
+      "relative_path": "src/predict.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\predict.py",
+      "bytes": 10106,
+      "sha256": "9871d605cb9c6abe0b4a5eb530b066ba3a95b51745f57ec730b3bc74c6d5d5de"
+    },
+    {
+      "relative_path": "src/recommendation_engine.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\recommendation_engine.py",
+      "bytes": 1627,
+      "sha256": "6896ee7e6f37196420e21baceae413ba4ef2e43bebd84e2b4d6f030844e28c2b"
+    },
+    {
+      "relative_path": "src/schemas.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\schemas.py",
+      "bytes": 4010,
+      "sha256": "59b5d812cbec626e05fed3bfc7e49801b6d377dcdb33c2fa0e299ef2fcc16a87"
+    },
+    {
+      "relative_path": "src/train.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\train.py",
+      "bytes": 22016,
+      "sha256": "48a09d000c21aa97f55d72acebaa1dcae27305ee0892503060a85478e99c03b9"
+    },
+    {
+      "relative_path": "src/ui.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\src\\ui.py",
+      "bytes": 4828,
+      "sha256": "c0c306ba98377790184c9cd55e4c285f345363412190b136e75ecebeed3a5ad0"
+    },
+    {
+      "relative_path": "tests/conftest.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\tests\\conftest.py",
+      "bytes": 559,
+      "sha256": "d664273822477ad1b28679d27926e8d5fd9e28c191cfe2db8b01e0e1fba84e0f"
+    },
+    {
+      "relative_path": "tests/test_api.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\tests\\test_api.py",
+      "bytes": 2198,
+      "sha256": "47d45f8bbec9b55776616de7bec42cc24af4f4fb3e615fc25e489f2afd41fa51"
+    },
+    {
+      "relative_path": "tests/test_features.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\tests\\test_features.py",
+      "bytes": 2013,
+      "sha256": "9e612a266768aa7d549724e8693b5eea645e9796a708745b7a3ef847f5f269c8"
+    },
+    {
+      "relative_path": "tests/test_inference.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\tests\\test_inference.py",
+      "bytes": 3074,
+      "sha256": "71e75efd4d73176769522ae7c2b9c9cf47d01d53eb1048a6ce013a3800370ae1"
+    },
+    {
+      "relative_path": "tests/test_no_leakage.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\tests\\test_no_leakage.py",
+      "bytes": 1646,
+      "sha256": "709501c044b950fa5a5e0d24117cddb608bc3904c461f9d1afb278677316c432"
+    },
+    {
+      "relative_path": "tests/test_ui.py",
+      "absolute_path": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\tests\\test_ui.py",
+      "bytes": 728,
+      "sha256": "faac1a3697000afccab0fff16849a909fa55a25d751137c34202661c75abdeb4"
+    }
+  ],
+  "checksum_scope": "Exact archive-entry snapshot. Local append-only logs may grow after packaging.",
+  "excluded": "Local virtual environment, caches, temporary batch copies, secret .env and archive itself. Includes frozen models, source, raw data, reports, plots, tests and executed notebook."
+}

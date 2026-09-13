@@ -1,0 +1,122 @@
+[
+  {
+    "input": {
+      "product_type": "L",
+      "air_temperature": 298.1,
+      "process_temperature": 308.6,
+      "rotational_speed": 1450.0,
+      "torque": 45.0,
+      "tool_wear": 120.0
+    },
+    "features": [
+      {
+        "feature": "air_temperature",
+        "value": 298.1,
+        "reference_value": 300.1,
+        "contribution": -0.004887072307433002,
+        "direction": "decreases risk",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "product_type",
+        "value": "L",
+        "reference_value": "L",
+        "contribution": 0.0,
+        "direction": "no measured change",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "process_temperature",
+        "value": 308.6,
+        "reference_value": 310.1,
+        "contribution": 0.0,
+        "direction": "no measured change",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "rotational_speed",
+        "value": 1450.0,
+        "reference_value": 1504.0,
+        "contribution": 0.0,
+        "direction": "no measured change",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "torque",
+        "value": 45.0,
+        "reference_value": 40.0,
+        "contribution": 0.0,
+        "direction": "no measured change",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "tool_wear",
+        "value": 120.0,
+        "reference_value": 106.0,
+        "contribution": 0.0,
+        "direction": "no measured change",
+        "units": "failure probability difference on single-feature replacement"
+      }
+    ]
+  },
+  {
+    "input": {
+      "product_type": "L",
+      "air_temperature": 302.0,
+      "process_temperature": 310.0,
+      "rotational_speed": 1300.0,
+      "torque": 65.0,
+      "tool_wear": 220.0
+    },
+    "features": [
+      {
+        "feature": "torque",
+        "value": 65.0,
+        "reference_value": 40.0,
+        "contribution": 0.24188413622073457,
+        "direction": "increases risk",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "rotational_speed",
+        "value": 1300.0,
+        "reference_value": 1504.0,
+        "contribution": 0.07502863905468526,
+        "direction": "increases risk",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "air_temperature",
+        "value": 302.0,
+        "reference_value": 300.1,
+        "contribution": 0.014004985904113143,
+        "direction": "increases risk",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "tool_wear",
+        "value": 220.0,
+        "reference_value": 106.0,
+        "contribution": -0.006247788933255949,
+        "direction": "decreases risk",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "process_temperature",
+        "value": 310.0,
+        "reference_value": 310.1,
+        "contribution": -0.004922998815366397,
+        "direction": "decreases risk",
+        "units": "failure probability difference on single-feature replacement"
+      },
+      {
+        "feature": "product_type",
+        "value": "L",
+        "reference_value": "L",
+        "contribution": 0.0,
+        "direction": "no measured change",
+        "units": "failure probability difference on single-feature replacement"
+      }
+    ]
+  }
+]

@@ -1,0 +1,82 @@
+{
+  "model_pipeline.joblib": {
+    "fresh_process_loaded": true,
+    "class": "Pipeline"
+  },
+  "failure_mode_pipeline.joblib": {
+    "fresh_process_loaded": true,
+    "class": "FailureModeComponent"
+  },
+  "anomaly_model.joblib": {
+    "fresh_process_loaded": true,
+    "class": "AnomalyComponent"
+  },
+  "manual_input.json": {
+    "failure_probability": 0.0,
+    "predicted_class": "no_failure",
+    "health_status": "Healthy",
+    "latency_ms": 529.9904998391867,
+    "explanation_method": "Tree SHAP on deployed random-forest probability; additive across all transformed features"
+  },
+  "high_risk_input.json": {
+    "failure_probability": 0.9531081590192291,
+    "predicted_class": "failure",
+    "health_status": "Critical",
+    "latency_ms": 521.1582998745143,
+    "explanation_method": "Tree SHAP on deployed random-forest probability; additive across all transformed features"
+  },
+  "batch_cli": {
+    "rows": 3,
+    "output": "C:\\Users\\vanda\\OneDrive\\Documents\\ChatGPT\\predictive maintenance agent for manufacturing\\predictive_maintenance\\examples\\batch_output_5dd2633c.csv"
+  },
+  "invalid_cli": {
+    "exit_code": 2,
+    "clear_validation_error": true
+  },
+  "all_saved_test_probabilities_scores_in_range": true,
+  "artifact_checksums_verified": true,
+  "readable_artifacts": {
+    "models\\anomaly_model.joblib": 3710076,
+    "models\\artifact_manifest.json": 924,
+    "models\\explanation_baseline.json": 162,
+    "models\\failure_mode_pipeline.joblib": 780247,
+    "models\\model_metadata.json": 6189,
+    "models\\model_pipeline.joblib": 2293067,
+    "models\\threshold.json": 498,
+    "models\\training_profile.json": 1412,
+    "configs\\inference.yaml": 170,
+    "configs\\maintenance_rules.yaml": 905,
+    "configs\\training.yaml": 260,
+    "reports\\figures\\anomaly_score_distribution.png": 35778,
+    "reports\\figures\\calibration_curve.png": 55993,
+    "reports\\figures\\confusion_matrix.png": 32523,
+    "reports\\figures\\correlation_matrix.png": 82513,
+    "reports\\figures\\failure_mode_results.png": 29821,
+    "reports\\figures\\feature_importance.png": 37811,
+    "reports\\figures\\numeric_feature_distributions.png": 122183,
+    "reports\\figures\\precision_recall_curve.png": 35710,
+    "reports\\figures\\roc_curve.png": 35742,
+    "reports\\figures\\target_distributions.png": 38135,
+    "reports\\metrics\\anomaly_metrics.json": 447,
+    "reports\\metrics\\cross_validation.csv": 17690,
+    "reports\\metrics\\failure_mode_metrics.csv": 1991,
+    "reports\\metrics\\failure_mode_metrics.json": 7560,
+    "reports\\metrics\\failure_mode_validation_metrics.json": 3798,
+    "reports\\metrics\\global_feature_importance.csv": 370,
+    "reports\\metrics\\live_service_verification.json": 1135,
+    "reports\\metrics\\local_explanations.json": 3808,
+    "reports\\metrics\\model_comparison.csv": 5286,
+    "reports\\metrics\\notebook_verification.json": 422,
+    "reports\\metrics\\overall_metrics.csv": 700,
+    "reports\\metrics\\pytest_results.xml": 4729,
+    "reports\\metrics\\random_forest_search.csv": 5459,
+    "reports\\metrics\\selection_decision_before_test.json": 1877,
+    "reports\\metrics\\shap_explanations.json": 1421,
+    "reports\\metrics\\test_metrics.json": 1895,
+    "reports\\metrics\\test_metrics_by_product_type.json": 4545,
+    "reports\\metrics\\test_predictions.csv": 275716,
+    "reports\\metrics\\validation_metrics.json": 1308,
+    "reports\\metrics\\validation_threshold_search.csv": 39592,
+    "reports\\metrics\\xgboost_search.csv": 5602
+  }
+}

@@ -1,0 +1,581 @@
+Act as an autonomous senior machine-learning engineer and MLOps engineer. Complete the entire machine-learning component of the “Predictive Maintenance Agent for Manufacturing” project.
+
+Read and use the attached project-definition and architecture PDFs as the primary requirements:
+
+- `Predictive_Maintenance_Agent_GENERIC_MANUFACTURING.pdf`
+- `cognizant project pdf 1.pdf`
+
+Build, train, debug, evaluate, document, and package the complete solution. Execute the code and verify the resulting artifacts. Do not stop after giving instructions, an outline, or sample code.
+
+## 1. Project objective
+
+Create a production-oriented predictive-maintenance system that accepts machine operating data and produces:
+
+- Overall machine-failure probability
+- Predicted failure class
+- Machine-health status
+- Anomaly score
+- Ranked likely failure modes
+- Supporting condition evidence
+- Important contributing features
+- Risk and urgency level
+- Recommended maintenance action
+- Model version and prediction timestamp
+
+The primary manual and programmatic inputs are:
+
+- Product Type: L, M, or H
+- Air Temperature in K
+- Process Temperature in K
+- Rotational Speed in rpm
+- Torque in Nm
+- Tool Wear in minutes
+
+Calculate these derived features:
+
+- `temperature_difference = process_temperature - air_temperature`
+- `mechanical_power_w = torque * rotational_speed * 2 * pi / 60`
+- `overstrain_measure = tool_wear * torque`
+
+## 2. Dataset handling and official sources
+
+First, locate and inspect every dataset supplied in the current workspace. Use the supplied datasets when they are relevant and valid.
+
+The primary dataset is AI4I 2020 Predictive Maintenance:
+
+- Kaggle: https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020
+- Official UCI source: https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset
+
+If the supplied data is missing, insufficient, corrupted, unsuitable for a required component, or too limited for defensible evaluation:
+
+1. Obtain the required data only from official, original, governmental, academic, manufacturer, or otherwise authoritative sources.
+2. Do not use unverified reposts when an original source exists.
+3. Record the dataset name, owner, direct URL, download date, version, license, checksum, intended use, and exact local filename.
+4. Keep raw datasets unchanged.
+5. Save downloaded data in the appropriate raw-data directory.
+6. Document how multiple datasets differ in sensors, machines, sampling rates, targets, units, and failure definitions.
+7. Do not combine incompatible datasets merely to increase the number of rows.
+8. Do not claim that a model trained on one machine or dataset automatically generalizes to another factory.
+
+At the end, provide a complete list of all datasets used and direct links to their official locations. If only AI4I is appropriate, state that clearly instead of adding unnecessary datasets.
+
+## 3. Required organized project structure
+
+Create one self-contained project folder with a clear structure similar to:
+
+```text
+predictive_maintenance/
+├── README.md
+├── requirements.txt
+├── pyproject.toml
+├── Dockerfile
+├── .env.example
+├── configs/
+│   ├── training.yaml
+│   ├── inference.yaml
+│   └── maintenance_rules.yaml
+├── data/
+│   ├── raw/
+│   ├── interim/
+│   ├── processed/
+│   └── DATA_SOURCES.md
+├── notebooks/
+│   └── predictive_maintenance_analysis.ipynb
+├── src/
+│   ├── __init__.py
+│   ├── data_validation.py
+│   ├── feature_engineering.py
+│   ├── condition_engine.py
+│   ├── train.py
+│   ├── evaluate.py
+│   ├── explain.py
+│   ├── anomaly_detection.py
+│   ├── failure_mode_model.py
+│   ├── recommendation_engine.py
+│   ├── predict.py
+│   ├── schemas.py
+│   └── api.py
+├── models/
+│   ├── model_pipeline.joblib
+│   ├── failure_mode_pipeline.joblib
+│   ├── anomaly_model.joblib
+│   ├── threshold.json
+│   └── model_metadata.json
+├── reports/
+│   ├── figures/
+│   ├── metrics/
+│   ├── data_quality_report.json
+│   ├── model_card.md
+│   └── final_report.md
+├── examples/
+│   ├── manual_input.json
+│   ├── batch_input.csv
+│   └── sample_output.json
+├── tests/
+│   ├── test_features.py
+│   ├── test_inference.py
+│   ├── test_api.py
+│   └── test_no_leakage.py
+└── logs/
+    ├── training.log
+    ├── inference.log
+    └── error.log
+```
+
+You may improve this structure when necessary, but keep all files organized inside one main project folder. Do not scatter outputs across unrelated directories.
+
+## 4. Data inspection and validation
+
+Inspect and report:
+
+- Dataset shape and column names
+- Data types and units
+- Missing values
+- Duplicate records
+- Invalid categories
+- Impossible or suspicious sensor values
+- Target distributions
+- Failure prevalence
+- Failure-mode prevalence
+- Class imbalance
+- Correlations and distributions
+- Potential label leakage
+- Dataset limitations
+
+Preserve an immutable raw-data copy. Put all cleaning and feature transformation logic into reproducible code.
+
+Validate inference inputs using an explicit schema. Reject invalid, missing, nonnumeric, infinite, or physically impossible values with understandable error messages. Warn when a value is far outside the training distribution.
+
+## 5. Targets and leakage prevention
+
+Use `Machine failure` as the main binary target.
+
+Treat the following as failure-mode targets:
+
+- `TWF`: Tool Wear Failure
+- `HDF`: Heat Dissipation Failure
+- `PWF`: Power Failure
+- `OSF`: Overstrain Failure
+- `RNF`: Random Failure
+
+Remove identifiers such as `UDI` and `Product ID` from model inputs.
+
+Never use `Machine failure`, `TWF`, `HDF`, `PWF`, `OSF`, or `RNF` as prediction features. When training any target, exclude every target-label column from its feature matrix.
+
+Use only information that would be available at prediction time. Add an automated leakage test that fails if an identifier or target column enters a model’s predictors.
+
+## 6. Feature processing
+
+Build reusable scikit-learn-compatible preprocessing pipelines that:
+
+- Encode Product Type
+- Handle missing values
+- Retain units consistently
+- Create the three required derived features
+- Safely handle previously unseen categories where appropriate
+- Apply scaling only for algorithms that need it
+- Perform identical transformations during training and inference
+- Preserve feature names for explainability
+
+Do not fit transformations on validation or test data.
+
+## 7. Condition engine
+
+Implement the dataset-specific AI4I condition calculations separately from the ML models:
+
+### Heat Dissipation Failure evidence
+
+```text
+temperature_difference < 8.6 K
+AND rotational_speed < 1380 rpm
+```
+
+### Power Failure evidence
+
+```text
+mechanical_power_w < 3500 W
+OR mechanical_power_w > 9000 W
+```
+
+### Overstrain Failure evidence
+
+```text
+Product Type L: overstrain_measure > 11000
+Product Type M: overstrain_measure > 12000
+Product Type H: overstrain_measure > 13000
+```
+
+### Tool Wear Failure evidence
+
+Tool Wear Failure is associated with the dataset-generation wear interval, but do not present an arbitrary deterministic cutoff as a universal factory rule.
+
+### Random Failure
+
+Do not force a sensor-based explanation for RNF because its generation is random.
+
+Return triggered rules and measured values as supporting evidence. Describe them as AI4I-specific conditions unless they have been calibrated and approved for the target factory.
+
+## 8. Train, validate, and compare models
+
+Use reproducible random seeds and create stratified training, validation, and test sets. Keep the final test set isolated until model and threshold selection are finished.
+
+Train and compare at least:
+
+- Dummy classifier
+- Logistic regression
+- Random forest
+- Gradient-boosted tree model
+- XGBoost, LightGBM, or CatBoost if available and compatible
+
+Use a reproducible preprocessing-and-model pipeline for every candidate.
+
+Address class imbalance using class weights, cost-sensitive learning, or resampling. Apply resampling only inside training folds. Never resample validation or test data.
+
+Use stratified cross-validation. Tune the strongest candidates without an excessive or wasteful search.
+
+Evaluate:
+
+- Accuracy
+- Balanced accuracy
+- Precision for failure
+- Recall for failure
+- Specificity
+- F1 score
+- ROC-AUC
+- Precision-recall AUC
+- Brier score or another probability-calibration metric
+- Confusion matrix
+- Classification report
+- Cross-validation mean and standard deviation
+- Metrics by Product Type when sample sizes permit
+
+Select the final model based primarily on failure recall, precision, F1, precision-recall AUC, calibration, and the operational cost of false negatives and false positives. Do not select it using accuracy alone.
+
+Tune the decision threshold only on training and validation results. Save the selected threshold and the selection method. Evaluate the final model once on the untouched test set.
+
+If useful, calibrate probabilities using a method fitted without test leakage.
+
+## 9. Failure-mode prediction
+
+Create a separate failure-mode component using the five failure-mode columns as targets and only prediction-time features as inputs.
+
+Account for these facts:
+
+- Failure modes are highly imbalanced.
+- A row may theoretically contain more than one active failure label.
+- RNF has no deterministic sensor cause.
+- Some classes may contain too few positive samples for reliable standalone ML evaluation.
+
+Use a multilabel model, separate binary models, a hybrid ML-and-condition approach, or another justified design.
+
+Return ranked failure modes with probabilities or confidence scores. If a class lacks enough data for dependable ML training, document that limitation and use condition evidence without pretending it is a validated probability.
+
+Report per-mode precision, recall, F1, PR-AUC, support, and confusion matrices where statistically meaningful.
+
+## 10. Anomaly detection
+
+Implement an anomaly-detection component using a justified approach such as Isolation Forest.
+
+Train it only on appropriate training data, preferably normal operating examples. Save the anomaly model and document:
+
+- Features used
+- Contamination or threshold choice
+- Meaning of the anomaly score
+- Limitations
+- How it complements failure classification
+
+Do not equate every anomaly with a confirmed failure.
+
+## 11. Explainability
+
+Use SHAP when compatible with the selected model. If SHAP is unavailable, use permutation importance and a documented local explanation fallback.
+
+Provide:
+
+- Global feature importance
+- Local contributing features for individual predictions
+- Direction and magnitude of contributions when supported
+- Condition-engine evidence
+- Plain-language explanations
+
+Use “contributing factors,” “supporting evidence,” and “likely failure mode.” Do not claim that feature importance proves physical causality.
+
+## 12. Maintenance recommendations
+
+Create a configurable recommendation engine, preferably driven by `configs/maintenance_rules.yaml`.
+
+At minimum, map:
+
+- TWF → Inspect or replace the tool
+- HDF → Inspect cooling and heat-dissipation conditions
+- PWF → Inspect machine load, power delivery, and drive system
+- OSF → Inspect tool condition and excessive mechanical load
+- RNF → Perform a broader inspection; do not claim a specific sensor cause
+
+Combine failure risk, anomaly score, failure-mode ranking, and rule evidence to assign:
+
+- Healthy
+- Warning
+- High Risk
+- Critical
+
+Keep risk thresholds configurable. Mark all recommendations as decision support requiring factory-specific approval.
+
+## 13. Manual prediction capability
+
+Make the system ready to predict manually entered data.
+
+Implement all three interfaces:
+
+1. A command-line prediction tool
+2. A REST API using FastAPI
+3. A simple manual-entry interface using Streamlit or an equivalent lightweight UI
+
+The manual form must accept:
+
+- Product Type
+- Air Temperature
+- Process Temperature
+- Rotational Speed
+- Torque
+- Tool Wear
+
+Display:
+
+- Validated input values and units
+- Derived values
+- Failure probability
+- Predicted class
+- Health and urgency level
+- Anomaly score
+- Ranked likely failure modes
+- Triggered condition evidence
+- Main contributing features
+- Recommended maintenance action
+- Model version
+- Prediction timestamp
+
+Provide a working sample command, request, and response.
+
+Example CLI behavior:
+
+```bash
+python -m src.predict \
+  --type L \
+  --air-temperature 298.1 \
+  --process-temperature 308.6 \
+  --rotational-speed 1450 \
+  --torque 45.0 \
+  --tool-wear 120
+```
+
+Example API behavior:
+
+```http
+POST /predict
+Content-Type: application/json
+```
+
+Also implement:
+
+- `GET /health`
+- `GET /model-info`
+- `POST /predict`
+- `POST /predict-batch`
+
+Batch prediction must accept a CSV file and save results to a new CSV.
+
+## 14. Factory integration readiness
+
+Package the ML system as a deployable pilot service that can be integrated with factory systems.
+
+Include:
+
+- Versioned REST API
+- Dockerfile
+- Health check
+- Input and output schemas
+- Batch and single-record inference
+- Configurable thresholds
+- Structured inference logs
+- Model metadata and training-data version
+- Unit and range validation
+- Graceful handling of missing sensor readings
+- Consistent units
+- Prediction latency measurement
+- Model-loading verification
+- Dependency pinning
+- Environment-variable configuration
+- Clear integration examples
+- Example JSON payloads
+- Example CSV input
+- API documentation generated by FastAPI
+- Instructions for connecting a CSV source, database, sensor gateway, or manufacturing data platform
+
+Design a generic factory input adapter interface so future connectors can send timestamped readings with:
+
+- Machine identifier
+- Event timestamp
+- Sensor values
+- Product Type
+- Optional production state
+
+Keep machine identifier and timestamp as metadata. Do not treat them as predictive inputs unless future real data supports their use.
+
+Log predictions with timestamp, machine identifier, input validation result, model version, risk score, output class, and latency. Do not log secrets.
+
+Add monitoring guidance and code hooks for:
+
+- Missing-data rate
+- Input-schema failures
+- Out-of-distribution values
+- Feature drift
+- Prediction drift
+- Failure-alert rate
+- Latency
+- Confirmed outcomes when available
+
+Explain how technician feedback and confirmed maintenance outcomes can later be captured for retraining.
+
+The completed system must be ready for a controlled factory pilot. Do not falsely describe a synthetic-data model as universally production-approved. Create `FACTORY_DEPLOYMENT_CHECKLIST.md` covering sensor mapping, unit verification, historical-data validation, threshold calibration, cybersecurity review, shadow-mode testing, human approval, monitoring, rollback, and retraining.
+
+## 15. Time-related prediction limitation
+
+The AI4I dataset consists of synthetic observations and does not provide a dependable timestamped run-to-failure sequence or defined future prediction horizon.
+
+Therefore:
+
+- Do not claim “failure in the next X hours.”
+- Do not call the output remaining useful life.
+- Describe the result as failure risk under the supplied operating condition.
+- If true early-warning or remaining-useful-life prediction is required, find an appropriate official time-series run-to-failure dataset and build it as a clearly separate model.
+- Never mix a time-series dataset into AI4I without documenting machine identity, temporal ordering, target definition, and domain differences.
+
+## 16. Saved artifacts
+
+Save:
+
+- Complete preprocessing and prediction pipeline
+- Failure-mode pipeline or hybrid component
+- Anomaly-detection model
+- Selected classification threshold
+- Model metadata
+- Training configuration
+- Data-validation report
+- Metrics in JSON and CSV
+- Cross-validation results
+- Model-comparison table
+- Test predictions
+- Generated plots
+- Global and local explanation outputs
+- Training script
+- Evaluation script
+- Single-record prediction script
+- Batch-prediction script
+- FastAPI service
+- Manual-entry application
+- Dockerfile
+- Automated tests
+- Executed Jupyter notebook
+- `requirements.txt`
+- `pyproject.toml`
+- Complete `README.md`
+- Model card
+- Factory deployment checklist
+- Dataset-source document
+- Final technical report
+- Execution and error logs
+
+Save plots for:
+
+- Target distributions
+- Numeric feature distributions
+- Correlation matrix
+- Confusion matrix
+- ROC curve
+- Precision-recall curve
+- Calibration curve
+- Feature importance
+- Failure-mode results
+- Anomaly-score distribution
+
+## 17. Error logging and automatic recovery
+
+Run every stage of the implementation.
+
+If any dataset operation, command, installation, import, training step, evaluation step, notebook cell, API test, UI test, serialization step, or inference step fails:
+
+1. Capture the UTC timestamp.
+2. Capture the command or processing stage.
+3. Capture the exception type, error message, and complete traceback.
+4. Append the details to `logs/error.log`.
+5. Never overwrite earlier error entries.
+6. Diagnose the actual cause.
+7. Correct the code, paths, dependencies, schema, data handling, or configuration.
+8. Rerun the failed step.
+9. Continue the fix-and-rerun cycle until the complete pipeline succeeds.
+10. Do not silently ignore errors or report unverified success.
+11. If an optional package fails, record the failure and implement a documented compatible fallback.
+12. If credentials or network restrictions prevent dataset access, log the exact issue, use any valid supplied dataset, and identify the specific unresolved external action.
+
+Save normal execution progress to `logs/training.log`, including:
+
+- Dataset versions and checksums
+- Split sizes
+- Random seed
+- Preprocessing configuration
+- Model parameters
+- Cross-validation results
+- Training duration
+- Selected threshold
+- Final metrics
+- Artifact paths
+- Verification results
+
+Save runtime prediction events and latency to `logs/inference.log`.
+
+## 18. Testing and verification
+
+Before finishing:
+
+1. Run the training pipeline from start to finish.
+2. Execute all notebook cells from a clean kernel.
+3. Run the automated tests.
+4. Verify the leakage test.
+5. Load each saved model in a separate process.
+6. Run at least one healthy and one high-risk manual prediction.
+7. Run batch prediction on the example CSV.
+8. Start the FastAPI service and test every endpoint.
+9. Start or validate the manual-entry application.
+10. Confirm every probability is between 0 and 1.
+11. Confirm required output files exist and are readable.
+12. Confirm training-time and inference-time transformations match.
+13. Confirm invalid manual input returns a clear validation error.
+14. Build the Docker image if the environment supports Docker.
+15. Record all verification results in `logs/training.log`.
+
+Do not fabricate, estimate, alter, or manually improve performance results. Report only outputs produced by executed code.
+
+## 19. Final response
+
+Finish with a concise but complete report containing:
+
+- Main project-folder path
+- Dataset names and official source links
+- Dataset suitability and limitations
+- Final overall-failure model
+- Selected threshold
+- Cross-validation, validation, and untouched-test metrics
+- Confusion-matrix values
+- Failure-mode results
+- Anomaly-detection design
+- Most influential features
+- Manual prediction example and result
+- API and UI startup commands
+- Factory integration procedure
+- Errors encountered and how each was corrected
+- Tests and verification completed
+- Exact paths to all deliverables
+- Exact commands to reproduce training and run inference
+
+Complete all work that can be performed in the environment before asking for missing information. If factory-specific sensor mappings, units, equipment history, or deployment credentials are unavailable, build the full generic pilot and list those items as factory deployment prerequisites.

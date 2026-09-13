@@ -1,0 +1,4 @@
+product_type,air_temperature,process_temperature,rotational_speed,torque,tool_wear,machine_id,event_timestamp,production_state
+L,298.1,308.6,1450,45,120,DEMO-001,2026-09-09T10:00:00Z,running
+L,302,310,1300,65,220,DEMO-002,2026-09-09T10:00:00Z,running
+M,300,310,1550,38,80,DEMO-003,2026-09-09T10:00:00Z,running

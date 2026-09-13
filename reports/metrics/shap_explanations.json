@@ -1,0 +1,55 @@
+{
+  "available": true,
+  "method": "Kernel SHAP on deployed probability, all six-feature coalitions, 12 training background rows",
+  "feature_names": [
+    "product_type",
+    "air_temperature",
+    "process_temperature",
+    "rotational_speed",
+    "torque",
+    "tool_wear"
+  ],
+  "base_value": 0.03177623149057087,
+  "contributions": [
+    [
+      0.006012064739930499,
+      -0.0035103354657767187,
+      0.002996790035678913,
+      0.0011641482088483388,
+      -0.018065079461502452,
+      -0.02037381954774945
+    ],
+    [
+      0.026624010604371962,
+      0.14498808285056458,
+      0.035805977418101737,
+      0.1176007975157794,
+      0.43484176423322535,
+      0.16147129490661527
+    ]
+  ],
+  "predictions": [
+    0.0,
+    0.9531081590192291
+  ],
+  "max_additivity_error": 0.0,
+  "inputs": [
+    {
+      "product_type": "L",
+      "air_temperature": 298.1,
+      "process_temperature": 308.6,
+      "rotational_speed": 1450.0,
+      "torque": 45.0,
+      "tool_wear": 120.0
+    },
+    {
+      "product_type": "L",
+      "air_temperature": 302.0,
+      "process_temperature": 310.0,
+      "rotational_speed": 1300.0,
+      "torque": 65.0,
+      "tool_wear": 220.0
+    }
+  ],
+  "limitations": "Background-dependent associations, not physical causes. Correlated inputs create off-manifold coalitions. Runtime uses faster non-additive reference replacement."
+}

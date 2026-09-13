@@ -1,0 +1,12 @@
+seed: 42
+test_fraction: 0.20
+validation_fraction: 0.20
+cv_folds: 5
+n_jobs: 2
+false_negative_cost: 5.0
+false_positive_cost: 1.0
+minimum_validation_recall: 0.80
+anomaly_contamination: 0.02
+min_mode_train_positives: 50
+permutation_repeats: 8
+calibration: sigmoid

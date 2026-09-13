@@ -1,0 +1,104 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "product_type": {
+      "enum": [
+        "L",
+        "M",
+        "H"
+      ],
+      "title": "Product Type",
+      "type": "string"
+    },
+    "air_temperature": {
+      "description": "Absolute air temperature in kelvin; broad pilot interface bound, training-range warnings apply",
+      "exclusiveMinimum": 0,
+      "maximum": 1000000,
+      "title": "Air Temperature",
+      "type": "number"
+    },
+    "process_temperature": {
+      "description": "Absolute process temperature in kelvin; broad pilot interface bound, training-range warnings apply",
+      "exclusiveMinimum": 0,
+      "maximum": 1000000,
+      "title": "Process Temperature",
+      "type": "number"
+    },
+    "rotational_speed": {
+      "description": "Rotational speed in rpm; broad pilot interface bound",
+      "maximum": 10000000,
+      "minimum": 0,
+      "title": "Rotational Speed",
+      "type": "number"
+    },
+    "torque": {
+      "description": "Torque magnitude in Nm; broad pilot interface bound",
+      "maximum": 1000000000,
+      "minimum": 0,
+      "title": "Torque",
+      "type": "number"
+    },
+    "tool_wear": {
+      "description": "Accumulated tool wear in minutes; broad pilot interface bound",
+      "maximum": 1000000000,
+      "minimum": 0,
+      "title": "Tool Wear",
+      "type": "number"
+    },
+    "machine_id": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.: -]+$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Machine Id"
+    },
+    "event_timestamp": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Event Timestamp"
+    },
+    "production_state": {
+      "anyOf": [
+        {
+          "enum": [
+            "running",
+            "idle",
+            "down",
+            "unknown"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Production State"
+    }
+  },
+  "required": [
+    "product_type",
+    "air_temperature",
+    "process_temperature",
+    "rotational_speed",
+    "torque",
+    "tool_wear"
+  ],
+  "title": "SensorReading",
+  "type": "object"
+}

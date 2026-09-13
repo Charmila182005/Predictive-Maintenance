@@ -1,0 +1,69 @@
+{
+  "events_observed": 41,
+  "prediction_count": 37,
+  "schema_failure_count": 4,
+  "schema_failure_rate": 0.0975609756097561,
+  "missing_sensor_rate": 0.00975609756097561,
+  "out_of_distribution_rate": 0.02702702702702703,
+  "failure_alert_rate": 0.2972972972972973,
+  "latency_ms": {
+    "p50": 369.74170012399554,
+    "p95": 663.8562998734413,
+    "max": 700.8369001559913
+  },
+  "prediction_probability_histogram": [
+    26,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    11
+  ],
+  "malformed_log_lines": 0,
+  "scope": "Last 10000 lines / 5 MB in this worker log. Alert rates are model outputs, not confirmed outcomes.",
+  "feature_drift": {
+    "air_temperature": {
+      "ks_statistic": 0.32504054054054055,
+      "p_value": 0.0005848264402889131,
+      "n_reference": 6000,
+      "n_current": 37,
+      "review_flag": true
+    },
+    "process_temperature": {
+      "ks_statistic": 0.5011666666666666,
+      "p_value": 4.582221474036054e-09,
+      "n_reference": 6000,
+      "n_current": 37,
+      "review_flag": true
+    },
+    "rotational_speed": {
+      "ks_statistic": 0.5003378378378378,
+      "p_value": 4.91498598670705e-09,
+      "n_reference": 6000,
+      "n_current": 37,
+      "review_flag": true
+    },
+    "torque": {
+      "ks_statistic": 0.5236711711711711,
+      "p_value": 6.506550797845107e-10,
+      "n_reference": 6000,
+      "n_current": 37,
+      "review_flag": true
+    },
+    "tool_wear": {
+      "ks_statistic": 0.4010045045045045,
+      "p_value": 7.533573150147441e-06,
+      "n_reference": 6000,
+      "n_current": 37,
+      "review_flag": true
+    },
+    "product_type": {
+      "total_variation_distance": 0.23383783783783785
+    }
+  },
+  "feedback_available": true
+}
