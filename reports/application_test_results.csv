@@ -1,0 +1,11 @@
+test_case,product_type,air_temperature,process_temperature,rotational_speed,torque,tool_wear,failure_probability,predicted_failure,failure_mode,risk_level,urgency,maintenance_recommendation
+Normal,L,298.1,308.6,1450,45,120,0.0,False,,Low,Routine,No immediate maintenance action is indicated. Continue monitoring the machine.
+Normal,L,298.5,308.8,1500,40,100,0.0,False,,Low,Routine,No immediate maintenance action is indicated. Continue monitoring the machine.
+Combined_Power_Overstrain_ToolWear,M,300.0,310.0,1200,80,220,0.8818,True,TWF,Critical,Immediate,Inspect the tool condition and replace the tool if wear is excessive.
+High_Overstrain,L,298.0,308.0,1300,75,180,0.9816,True,PWF,Critical,Immediate,"Inspect machine load, power delivery, and the drive system."
+High_Overstrain,H,299.0,309.0,1000,80,170,0.702,True,OSF,High,Urgent,Inspect tool condition and check for excessive mechanical load.
+ToolWear_Context,L,300.0,310.0,1200,50,220,0.2487,False,,Medium,Scheduled,No immediate maintenance action is indicated. Continue monitoring the machine.
+ToolWear_Context,M,298.0,308.0,1350,50,210,0.0096,False,,Low,Routine,No immediate maintenance action is indicated. Continue monitoring the machine.
+Heat_Dissipation,L,298.0,306.0,1300,45,100,0.5197,True,HDF,High,Urgent,Inspect the cooling system and heat-dissipation conditions.
+Heat_Dissipation,M,299.0,307.0,1250,50,150,0.5236,True,HDF,High,Urgent,Inspect the cooling system and heat-dissipation conditions.
+Normal,H,298.5,308.0,1400,45,100,0.0192,False,,Low,Routine,No immediate maintenance action is indicated. Continue monitoring the machine.
