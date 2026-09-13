@@ -1,5 +1,9 @@
-# Predictive Maintenance — Python dependencies
-# Add packages here as needed, e.g.:
-#   numpy==1.26.4
-#   scikit-learn==1.4.0
-#   fastapi==0.111.0
+fastapi
+uvicorn[standard]
+pydantic
+joblib
+pandas
+numpy
+PyYAML
+scikit-learn
+requests
