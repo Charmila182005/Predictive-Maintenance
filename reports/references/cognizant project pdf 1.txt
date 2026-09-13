@@ -1,0 +1,149 @@
+PAGE 1
+Predictive Maintenance Agent for Manufacturing
+Page 1
+ Predictive Maintenance Agent for Manufacturing
+ System Architecture and Prototype Design
+Architecture goal: Build a clear pipeline that takes machine/process data and turns it into a predictive
+maintenance decision.
+1. High-Level System Architecture
+Machine / Sensor Data → Data Collection → Data Processing → Condition Engine + ML Prediction
+Engine → Explainability / Failure Analysis → Maintenance Recommendation → Dashboard / Agent
+2. Architecture Components
+1. Data Collection
+Receives machine/process readings such as temperature, rotational speed, torque and tool wear. In a
+prototype, this can be a CSV/API input. In a real factory, this layer can receive data from connected machines
+or an industrial data gateway.
+2. Data Processing
+Cleans and validates incoming values, handles missing values, selects required features and calculates
+derived parameters such as temperature difference, mechanical power and overstrain measure.
+3. Condition Engine
+Applies interpretable engineering conditions to identify abnormal operating situations and provide supporting
+evidence for the ML prediction.
+4. ML Prediction Engine
+Uses a trained classification model to calculate failure risk. A separate model or classification stage can identify
+the likely failure mode.
+5. Explainability / Failure Analysis
+Combines model output and condition evidence to explain why the machine is considered at risk. The output
+should use terms such as “likely failure mode” when exact physical causality cannot be proven.
+6. Maintenance Recommendation Engine
+Maps the predicted condition/failure mode to a practical maintenance action and urgency level.
+7. Dashboard / Agent
+Shows machine health, risk score, likely failure mode, supporting parameters, recommendation and alert status
+in a simple interface.
+3. Processing Flow
+ Step 1 — Receive machine readings.
+ 
+ Step 2 — Validate and preprocess the data.
+ 
+ Step 3 — Calculate derived parameters.
+ 
+
+PAGE 2
+Predictive Maintenance Agent for Manufacturing
+Page 2
+ Step 4 — Run condition checks.
+ 
+ Step 5 — Send features to the trained ML model.
+ 
+ Step 6 — Generate failure probability and predicted failure mode.
+ 
+ Step 7 — Combine prediction with supporting evidence.
+ 
+ Step 8 — Generate maintenance recommendation.
+ 
+ Step 9 — Display the result and raise an alert when required.
+ 
+4. Example Decision Flow
+Input: Air temperature, process temperature, rotational speed, torque, tool wear and product type.
+Processing: Calculate temperature difference, mechanical power and overstrain measure.
+Prediction: ML model returns a high failure probability.
+Analysis: High torque and high tool wear support an overstrain warning.
+Agent output: “High failure risk. Likely failure mode: Overstrain Failure. Evidence: high torque and high tool
+wear. Recommended action: inspect tool condition and machine load.”
+5. Prototype Technology Structure
+Layer
+Prototype implementation
+Data
+CSV dataset / simulated incoming readings
+Processing
+Python data-processing pipeline
+ML
+Classification model trained on historical data
+Condition Analysis
+Python rule/condition layer
+Recommendation
+Rule-based mapping from risk/failure mode to action
+Interface
+Simple web dashboard or application screen
+Alerts
+Application notification or workflow trigger
+6. ML Model Pipeline
+ Load and inspect the historical data.
+ 
+ Select the relevant input features.
+ 
+ Prepare the target failure label.
+ 
+ Split data into training and testing sets.
+ 
+ Train a classification model.
+ 
+ Evaluate precision, recall, F1-score and confusion matrix.
+ 
+ Save the trained model.
+ 
+ Use the saved model for new machine readings.
+ 
+7. Failure Analysis Layer
+The analysis layer should not depend only on the ML prediction. It should also calculate interpretable
+indicators. This creates a hybrid design in which the ML model answers “how likely is failure?” while the
+condition layer helps answer “what operating condition supports this result?”
+
+
+PAGE 3
+Predictive Maintenance Agent for Manufacturing
+Page 3
+8. Dashboard Layout
+Section
+Information shown
+Machine Status
+Healthy / Warning / High Risk
+Risk
+Failure probability or risk score
+Failure Mode
+Most likely failure mode
+Evidence
+Important sensor/derived values
+Recommendation
+Suggested maintenance action
+History
+Recent risk/prediction trend when historical timestamps are available
+Alert
+Maintenance attention required
+9. Service / Workflow Integration Concept
+If the prototype is implemented on an enterprise workflow platform, the prediction can create a maintenance
+alert or work item. The workflow can assign the issue to the responsible maintenance team, record the
+recommendation, track acknowledgement and maintain a history of actions. The AI prediction remains the
+analytical layer; workflow automation handles the operational response.
+10. Future Real-Factory Architecture
+Machines / Sensors → Industrial Data Gateway → Data Platform → Feature Processing → ML +
+Condition Engine → Prediction Service → Maintenance Workflow → Technician → Feedback /
+Maintenance History → Model Improvement
+This extended architecture requires real-time machine connectivity, timestamps, machine identifiers,
+maintenance records and feedback from completed maintenance activities.
+11. Final Prototype Architecture
+For the hackathon prototype, keep the implementation focused:
+ Historical machine data as the input.
+ 
+ Feature/derived-parameter processing.
+ 
+ ML failure prediction.
+ 
+ Failure-mode analysis.
+ 
+ Maintenance recommendation.
+ 
+ Simple dashboard/agent output.
+ 
+This is enough to demonstrate the complete predictive-maintenance workflow without unnecessarily expanding
+the prototype into a full industrial IoT platform.

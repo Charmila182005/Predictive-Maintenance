@@ -1,0 +1,273 @@
+{
+  "$defs": {
+    "FailureModeResult": {
+      "properties": {
+        "mode": {
+          "title": "Mode",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "probability": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Probability"
+        },
+        "score": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Score",
+          "type": "number"
+        },
+        "score_kind": {
+          "title": "Score Kind",
+          "type": "string"
+        },
+        "predicted_active": {
+          "title": "Predicted Active",
+          "type": "boolean"
+        },
+        "supporting_condition": {
+          "title": "Supporting Condition",
+          "type": "boolean"
+        },
+        "limitation": {
+          "title": "Limitation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode",
+        "name",
+        "score",
+        "score_kind",
+        "predicted_active",
+        "supporting_condition",
+        "limitation"
+      ],
+      "title": "FailureModeResult",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "prediction_id": {
+      "title": "Prediction Id",
+      "type": "string"
+    },
+    "prediction_timestamp": {
+      "format": "date-time",
+      "title": "Prediction Timestamp",
+      "type": "string"
+    },
+    "model_version": {
+      "title": "Model Version",
+      "type": "string"
+    },
+    "machine_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Machine Id"
+    },
+    "event_timestamp": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Event Timestamp"
+    },
+    "production_state": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Production State"
+    },
+    "validated_input": {
+      "additionalProperties": true,
+      "title": "Validated Input",
+      "type": "object"
+    },
+    "units": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Units",
+      "type": "object"
+    },
+    "derived_values": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Derived Values",
+      "type": "object"
+    },
+    "failure_probability": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Failure Probability",
+      "type": "number"
+    },
+    "predicted_class": {
+      "enum": [
+        "failure",
+        "no_failure"
+      ],
+      "title": "Predicted Class",
+      "type": "string"
+    },
+    "decision_threshold": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Decision Threshold",
+      "type": "number"
+    },
+    "health_status": {
+      "enum": [
+        "Healthy",
+        "Warning",
+        "High Risk",
+        "Critical"
+      ],
+      "title": "Health Status",
+      "type": "string"
+    },
+    "risk_level": {
+      "title": "Risk Level",
+      "type": "string"
+    },
+    "urgency": {
+      "title": "Urgency",
+      "type": "string"
+    },
+    "anomaly_score": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Anomaly Score",
+      "type": "number"
+    },
+    "anomaly_raw_score": {
+      "title": "Anomaly Raw Score",
+      "type": "number"
+    },
+    "is_anomaly": {
+      "title": "Is Anomaly",
+      "type": "boolean"
+    },
+    "anomaly_explanation": {
+      "title": "Anomaly Explanation",
+      "type": "string"
+    },
+    "likely_failure_modes": {
+      "items": {
+        "$ref": "#/$defs/FailureModeResult"
+      },
+      "title": "Likely Failure Modes",
+      "type": "array"
+    },
+    "condition_evidence": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Condition Evidence",
+      "type": "array"
+    },
+    "contributing_features": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Contributing Features",
+      "type": "array"
+    },
+    "explanation_method": {
+      "title": "Explanation Method",
+      "type": "string"
+    },
+    "explanation": {
+      "title": "Explanation",
+      "type": "string"
+    },
+    "recommended_maintenance_action": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Recommended Maintenance Action",
+      "type": "array"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    },
+    "decision_support_notice": {
+      "title": "Decision Support Notice",
+      "type": "string"
+    },
+    "latency_ms": {
+      "minimum": 0,
+      "title": "Latency Ms",
+      "type": "number"
+    }
+  },
+  "required": [
+    "prediction_id",
+    "prediction_timestamp",
+    "model_version",
+    "machine_id",
+    "event_timestamp",
+    "production_state",
+    "validated_input",
+    "units",
+    "derived_values",
+    "failure_probability",
+    "predicted_class",
+    "decision_threshold",
+    "health_status",
+    "risk_level",
+    "urgency",
+    "anomaly_score",
+    "anomaly_raw_score",
+    "is_anomaly",
+    "anomaly_explanation",
+    "likely_failure_modes",
+    "condition_evidence",
+    "contributing_features",
+    "explanation_method",
+    "explanation",
+    "recommended_maintenance_action",
+    "warnings",
+    "decision_support_notice",
+    "latency_ms"
+  ],
+  "title": "PredictionResult",
+  "type": "object"
+}

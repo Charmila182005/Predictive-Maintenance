@@ -1,0 +1,236 @@
+{
+  "shape": [
+    10000,
+    14
+  ],
+  "original_columns": [
+    "UDI",
+    "Product ID",
+    "Type",
+    "Air temperature [K]",
+    "Process temperature [K]",
+    "Rotational speed [rpm]",
+    "Torque [Nm]",
+    "Tool wear [min]",
+    "Machine failure",
+    "TWF",
+    "HDF",
+    "PWF",
+    "OSF",
+    "RNF"
+  ],
+  "canonical_columns": [
+    "UDI",
+    "Product ID",
+    "product_type",
+    "air_temperature",
+    "process_temperature",
+    "rotational_speed",
+    "torque",
+    "tool_wear",
+    "Machine failure",
+    "TWF",
+    "HDF",
+    "PWF",
+    "OSF",
+    "RNF"
+  ],
+  "dtypes": {
+    "UDI": "int64",
+    "Product ID": "object",
+    "product_type": "object",
+    "air_temperature": "float64",
+    "process_temperature": "float64",
+    "rotational_speed": "int64",
+    "torque": "float64",
+    "tool_wear": "int64",
+    "Machine failure": "int64",
+    "TWF": "int64",
+    "HDF": "int64",
+    "PWF": "int64",
+    "OSF": "int64",
+    "RNF": "int64"
+  },
+  "units": {
+    "product_type": "L/M/H",
+    "air_temperature": "K",
+    "process_temperature": "K",
+    "rotational_speed": "rpm",
+    "torque": "Nm",
+    "tool_wear": "min",
+    "temperature_difference": "K",
+    "mechanical_power_w": "W",
+    "overstrain_measure": "min*Nm"
+  },
+  "missing": {
+    "UDI": 0,
+    "Product ID": 0,
+    "product_type": 0,
+    "air_temperature": 0,
+    "process_temperature": 0,
+    "rotational_speed": 0,
+    "torque": 0,
+    "tool_wear": 0,
+    "Machine failure": 0,
+    "TWF": 0,
+    "HDF": 0,
+    "PWF": 0,
+    "OSF": 0,
+    "RNF": 0
+  },
+  "duplicate_full_records": 0,
+  "duplicate_predictor_records": 0,
+  "invalid_values": {
+    "air_temperature": 0,
+    "process_temperature": 0,
+    "rotational_speed": 0,
+    "torque": 0,
+    "tool_wear": 0,
+    "product_type": 0
+  },
+  "invalid_labels": {
+    "Machine failure": 0,
+    "TWF": 0,
+    "HDF": 0,
+    "PWF": 0,
+    "OSF": 0,
+    "RNF": 0
+  },
+  "target_counts": {
+    "Machine failure": {
+      "0": 9661,
+      "1": 339
+    },
+    "TWF": {
+      "0": 9954,
+      "1": 46
+    },
+    "HDF": {
+      "0": 9885,
+      "1": 115
+    },
+    "PWF": {
+      "0": 9905,
+      "1": 95
+    },
+    "OSF": {
+      "0": 9902,
+      "1": 98
+    },
+    "RNF": {
+      "0": 9981,
+      "1": 19
+    }
+  },
+  "failure_prevalence": 0.0339,
+  "mode_prevalence": {
+    "TWF": 0.0046,
+    "HDF": 0.0115,
+    "PWF": 0.0095,
+    "OSF": 0.0098,
+    "RNF": 0.0019
+  },
+  "product_type_counts": {
+    "L": 6000,
+    "M": 2997,
+    "H": 1003
+  },
+  "rows_with_multiple_failure_modes": 24,
+  "overall_label_disagrees_with_mode_union": {
+    "count": 27,
+    "zero_based_row_indices": [
+      1221,
+      1302,
+      1437,
+      1748,
+      2072,
+      2559,
+      2749,
+      3065,
+      3452,
+      4044,
+      4684,
+      5471,
+      5489,
+      5495,
+      5509,
+      5536,
+      5553,
+      5639,
+      5941,
+      6091,
+      6478,
+      6913,
+      6960,
+      7488,
+      7868,
+      8506,
+      9015
+    ],
+    "policy": "Preserve original labels; train overall and modes separately, report inconsistency."
+  },
+  "numeric_summary": {
+    "air_temperature": {
+      "count": 10000.0,
+      "mean": 300.00493,
+      "std": 2.000258682915751,
+      "min": 295.3,
+      "25%": 298.3,
+      "50%": 300.1,
+      "75%": 301.5,
+      "max": 304.5
+    },
+    "process_temperature": {
+      "count": 10000.0,
+      "mean": 310.00556,
+      "std": 1.4837342191657208,
+      "min": 305.7,
+      "25%": 308.8,
+      "50%": 310.1,
+      "75%": 311.1,
+      "max": 313.8
+    },
+    "rotational_speed": {
+      "count": 10000.0,
+      "mean": 1538.7761,
+      "std": 179.2840959134266,
+      "min": 1168.0,
+      "25%": 1423.0,
+      "50%": 1503.0,
+      "75%": 1612.0,
+      "max": 2886.0
+    },
+    "torque": {
+      "count": 10000.0,
+      "mean": 39.986909999999995,
+      "std": 9.968933725121337,
+      "min": 3.8,
+      "25%": 33.2,
+      "50%": 40.1,
+      "75%": 46.8,
+      "max": 76.6
+    },
+    "tool_wear": {
+      "count": 10000.0,
+      "mean": 107.951,
+      "std": 63.654146636636355,
+      "min": 0.0,
+      "25%": 53.0,
+      "50%": 108.0,
+      "75%": 162.0,
+      "max": 253.0
+    }
+  },
+  "suspicious_process_below_air_count": 0,
+  "zero_speed_count": 0,
+  "leakage_controls": "Strict six-feature allowlist; no identifiers, targets, event time or machine ID. Fold-local preprocessing. Random stratified split is an in-dataset benchmark, not temporal validation.",
+  "limitations": [
+    "Synthetic milling conditions; no real factory validation.",
+    "No reliable machine identity, timestamped run-to-failure sequence or defined prediction horizon.",
+    "Generation formulas create separable labels and can inflate apparent performance.",
+    "Random-walk temperatures and wear cycles create dependencies; random splits may be optimistic for deployment.",
+    "RNF counts and mode-union labels in CSV can differ from narrative documentation; empirical labels remain unchanged.",
+    "Rare mode metrics have high sampling uncertainty."
+  ],
+  "cleaning": "No raw rows or labels changed. Original labels retained; canonical renaming only. Imputation fitted inside training folds for robustness."
+}

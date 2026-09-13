@@ -1,0 +1,20 @@
+{
+  "status": "built_and_runtime_verified",
+  "image_tag": "predictive-maintenance-pilot:1.0.0",
+  "image_id": "sha256:1b3c63ba48322135d5587b8042f08accc4e00d00fee11582b8981ca4a127d114",
+  "image_size_bytes": 809918232,
+  "os": "linux",
+  "architecture": "amd64",
+  "runtime_user": "pilot",
+  "container_healthcheck": "healthy",
+  "health_response": {
+    "status": "ok",
+    "models_loaded": true,
+    "model_version": "ai4i-pilot-1.0.0-2026-09-09",
+    "factory_approved": false
+  },
+  "cross_platform_prediction_matches": true,
+  "high_risk_probability": 0.9531081590192291,
+  "high_risk_status": "Critical",
+  "container_removed_after_test": true
+}

@@ -1,0 +1,251 @@
+{
+  "prediction_id": "a6e1bd2d-edeb-4f74-b733-ed0738749633",
+  "prediction_timestamp": "2026-09-09T10:43:15.323319Z",
+  "model_version": "ai4i-pilot-1.0.0-2026-09-09",
+  "machine_id": "DEMO-002",
+  "event_timestamp": "2026-09-09T10:00:00Z",
+  "production_state": "running",
+  "validated_input": {
+    "product_type": "L",
+    "air_temperature": 302.0,
+    "process_temperature": 310.0,
+    "rotational_speed": 1300.0,
+    "torque": 65.0,
+    "tool_wear": 220.0
+  },
+  "units": {
+    "product_type": "L/M/H",
+    "air_temperature": "K",
+    "process_temperature": "K",
+    "rotational_speed": "rpm",
+    "torque": "Nm",
+    "tool_wear": "min",
+    "temperature_difference": "K",
+    "mechanical_power_w": "W",
+    "overstrain_measure": "min*Nm"
+  },
+  "derived_values": {
+    "temperature_difference": 8.0,
+    "mechanical_power_w": 8848.81930761125,
+    "overstrain_measure": 14300.0
+  },
+  "failure_probability": 0.9531081590192291,
+  "predicted_class": "failure",
+  "decision_threshold": 0.27904037338435955,
+  "health_status": "Critical",
+  "risk_level": "Critical",
+  "urgency": "Immediate human review",
+  "anomaly_score": 0.9875797826461963,
+  "anomaly_raw_score": 0.6097776638391865,
+  "is_anomaly": true,
+  "anomaly_explanation": "Empirical unusualness percentile among normal training rows; not a failure probability. Novelty can occur without failure.",
+  "likely_failure_modes": [
+    {
+      "mode": "TWF",
+      "name": "Tool Wear Failure",
+      "probability": null,
+      "score": 1.0,
+      "score_kind": "condition_context_indicator_not_probability",
+      "predicted_active": false,
+      "supporting_condition": true,
+      "limitation": "21 training positives below minimum 50; no dependable standalone model. Wear-interval context does not confirm failure."
+    },
+    {
+      "mode": "OSF",
+      "name": "Overstrain Failure",
+      "probability": 0.9999757159604756,
+      "score": 0.9999757159604756,
+      "score_kind": "uncalibrated_binary_model_probability",
+      "predicted_active": true,
+      "supporting_condition": true,
+      "limitation": "Only 62 training positives; probability not factory validated and not separately calibrated."
+    },
+    {
+      "mode": "HDF",
+      "name": "Heat Dissipation Failure",
+      "probability": 0.9642813269823648,
+      "score": 0.9642813269823648,
+      "score_kind": "uncalibrated_binary_model_probability",
+      "predicted_active": true,
+      "supporting_condition": true,
+      "limitation": "Only 70 training positives; probability not factory validated and not separately calibrated."
+    },
+    {
+      "mode": "RNF",
+      "name": "Random Failure",
+      "probability": null,
+      "score": 0.0016666666666666668,
+      "score_kind": "training_base_rate_not_individual_probability",
+      "predicted_active": false,
+      "supporting_condition": false,
+      "limitation": "Random event with no deterministic sensor cause. Base rate is descriptive only."
+    },
+    {
+      "mode": "PWF",
+      "name": "Power Failure",
+      "probability": 0.0,
+      "score": 0.0,
+      "score_kind": "uncalibrated_binary_model_probability",
+      "predicted_active": false,
+      "supporting_condition": false,
+      "limitation": "Only 58 training positives; probability not factory validated and not separately calibrated."
+    }
+  ],
+  "condition_evidence": [
+    {
+      "scope": "AI4I-specific supporting evidence; requires factory calibration",
+      "proves_physical_cause": false,
+      "mode": "HDF",
+      "triggered": true,
+      "rule": "temperature_difference < 8.6 K AND rotational_speed < 1380 rpm",
+      "measured": {
+        "temperature_difference": 8.0,
+        "rotational_speed": 1300.0
+      },
+      "kind": "deterministic_dataset_condition"
+    },
+    {
+      "scope": "AI4I-specific supporting evidence; requires factory calibration",
+      "proves_physical_cause": false,
+      "mode": "PWF",
+      "triggered": false,
+      "rule": "mechanical_power_w < 3500 W OR > 9000 W",
+      "measured": {
+        "mechanical_power_w": 8848.81930761125
+      },
+      "kind": "deterministic_dataset_condition"
+    },
+    {
+      "scope": "AI4I-specific supporting evidence; requires factory calibration",
+      "proves_physical_cause": false,
+      "mode": "OSF",
+      "triggered": true,
+      "rule": "overstrain_measure > 11000 min*Nm for Type L",
+      "measured": {
+        "overstrain_measure": 14300.0,
+        "threshold": 11000
+      },
+      "kind": "deterministic_dataset_condition"
+    },
+    {
+      "scope": "AI4I-specific supporting evidence; requires factory calibration",
+      "proves_physical_cause": false,
+      "mode": "TWF",
+      "triggered": true,
+      "rule": "Wear falls within AI4I generation interval 200-240 min; replacement/failure is stochastic, not a guaranteed failure cutoff",
+      "measured": {
+        "tool_wear": 220.0
+      },
+      "kind": "stochastic_generation_context"
+    },
+    {
+      "scope": "AI4I-specific supporting evidence; requires factory calibration",
+      "proves_physical_cause": false,
+      "mode": "RNF",
+      "triggered": false,
+      "rule": "No deterministic sensor cause; sensor readings cannot identify a random event",
+      "measured": {},
+      "kind": "unidentifiable_from_sensors"
+    }
+  ],
+  "contributing_features": [
+    {
+      "feature": "rotational_speed",
+      "value": 1300.0,
+      "contribution": 0.152046845895406,
+      "direction": "increases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "torque",
+      "value": 65.0,
+      "contribution": 0.1250790278178047,
+      "direction": "increases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "overstrain_measure",
+      "value": 14300.0,
+      "contribution": 0.11369562078952375,
+      "direction": "increases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "tool_wear",
+      "value": 220.0,
+      "contribution": 0.06080588419757357,
+      "direction": "increases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "temperature_difference",
+      "value": 8.0,
+      "contribution": 0.05380757786808349,
+      "direction": "increases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "mechanical_power_w",
+      "value": 8848.81930761125,
+      "contribution": -0.03521207943498446,
+      "direction": "decreases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "process_temperature",
+      "value": 310.0,
+      "contribution": -0.019897948618096777,
+      "direction": "decreases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "air_temperature",
+      "value": 302.0,
+      "contribution": 0.003716783114232928,
+      "direction": "increases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "product_type_H",
+      "value": 0.0,
+      "contribution": -0.0006342655132373691,
+      "direction": "decreases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "product_type_M",
+      "value": 0.0,
+      "contribution": -0.0006042407918664291,
+      "direction": "decreases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    },
+    {
+      "feature": "product_type_L",
+      "value": 1.0,
+      "contribution": 0.0003049536947891654,
+      "direction": "increases risk",
+      "units": "failure probability contribution",
+      "base_value": 0.4999999999999997
+    }
+  ],
+  "explanation_method": "Tree SHAP on deployed random-forest probability; additive across all transformed features",
+  "explanation": "Failure risk under the supplied operating condition. Tree SHAP contributions sum from the background baseline to this probability. Correlated raw and derived inputs can share credit; contributions do not prove physical causality. AI4I-specific supporting conditions are listed separately.",
+  "recommended_maintenance_action": [
+    "Inspect or replace the tool.",
+    "Inspect tool condition and excessive mechanical load.",
+    "Inspect cooling and heat-dissipation conditions."
+  ],
+  "warnings": [],
+  "decision_support_notice": "Decision support only. Factory-specific calibration and human approval are required before operational maintenance actions. This score describes the supplied operating condition and has no future time horizon.",
+  "latency_ms": 521.1582998745143
+}

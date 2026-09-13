@@ -1,0 +1,401 @@
+PAGE 1
+Predictive Maintenance Agent for Manufacturing
+Page 1
+ PREDICTIVE MAINTENANCE AGENT
+ FOR MANUFACTURING
+Complete Project Definition and Implementation Blueprint
+Sector: Manufacturing (generic)
+Dataset: Predictive Maintenance Dataset (AI4I 2020)
+Core parameters: Air Temperature, Process Temperature, Rotational Speed, Torque, Tool Wear
+Machine data -> Condition analysis -> Failure prediction -> Failure mode -> Explanation -> Maintenance
+recommendation
+This document is self-contained and is written specifically for the new predictive-maintenance project. It does not
+depend on or describe any previous project.
+
+
+PAGE 2
+Predictive Maintenance Agent for Manufacturing
+Page 2
+1. Problem Overview
+Manufacturing machines can experience unexpected failures that interrupt production. When a machine fails,
+production output can fall, delivery schedules can be affected, maintenance costs can increase, and available
+machine capacity can be lost.
+Traditional monitoring can show current readings or alert when a value crosses a threshold. However, monitoring
+alone does not answer an important question: Is the machine likely to fail soon, and what is the likely failure
+mode?
+The proposed system addresses this gap by using historical machine operating data to learn failure patterns and
+provide an early warning before a failure causes significant downtime.
+Problem statement
+Manufacturing needs a system that can use machine operating data to detect abnormal behavior, predict
+failure risk, identify the likely failure mode, explain the prediction and recommend a suitable maintenance
+action.
+2. How Big Is the Problem?
+Unexpected equipment downtime is a major operational problem because a stopped machine can interrupt
+production and create secondary effects such as delayed orders, idle labour, increased maintenance effort, additional
+operating cost and reduced productivity.
+The problem becomes more difficult when organizations depend on manual inspection or reactive maintenance. In a
+reactive approach, maintenance is performed after a failure or after a serious abnormal condition is observed.
+Predictive maintenance aims to identify risk earlier so that maintenance can be planned.
+Impact area
+Effect of unexpected machine failure
+Production
+Loss of output and reduced machine availability.
+Cost
+Lost production and potentially higher emergency maintenance costs.
+Delivery
+Production interruptions can affect order completion and delivery commitments.
+Maintenance
+Reactive failures can require urgent inspection, repair or replacement.
+Productivity
+Machine capacity is under-used while equipment is stopped.
+Planning
+Unexpected failures make production and maintenance planning harder.
+For the final presentation, organization-specific downtime cost figures should only be included if
+supported by a reliable source. The AI4I dataset itself is a predictive-maintenance dataset, not a study of
+the financial cost of manufacturing downtime.
+
+
+PAGE 3
+Predictive Maintenance Agent for Manufacturing
+Page 3
+3. Who Is Facing the Problem?
+The project is intentionally kept at the generic manufacturing sector level. We are not restricting the solution to
+automotive, textile, food, electronics or any other single manufacturing sub-sector.
+Primary users
+- Factory managers: need an overall view of machine health and failure risk.
+ 
+- Maintenance teams: need early warnings and information about what to inspect.
+ 
+- Production supervisors: need to know which machines may interrupt production.
+ 
+- Machine operators: need simple and understandable warnings.
+ 
+- Plant management: needs historical failure trends and maintenance priorities.
+ 
+Why generic manufacturing is appropriate
+The problem statement is about predictive maintenance for manufacturing machines in general. The AI4I 2020
+dataset is based on a milling process and can therefore be used as a representative demonstration dataset without
+restricting the entire project to one industry sub-sector.
+4. What We Are Building
+We are building a Predictive Maintenance Agent for Manufacturing. The agent analyzes machine operating
+parameters, calculates condition indicators, detects abnormal patterns, predicts the probability of failure, identifies the
+likely failure mode and recommends maintenance.
+Main objectives
+- Analyze the core machine parameters.
+ 
+- Calculate meaningful derived indicators.
+ 
+- Detect abnormal operating conditions.
+ 
+- Predict whether a machine is likely to fail.
+ 
+- Identify the most likely failure mode.
+ 
+- Explain which parameters contributed to the prediction.
+ 
+- Recommend an appropriate maintenance action.
+ 
+Core flow: Machine data -> Calculations -> Conditions -> Failure prediction -> Failure mode -> Explanation
+-> Maintenance recommendation
+
+
+PAGE 4
+Predictive Maintenance Agent for Manufacturing
+Page 4
+5. Dataset: AI4I 2020
+The selected dataset is the Predictive Maintenance Dataset (AI4I 2020), commonly available through Kaggle and
+the UCI Machine Learning Repository. It contains 10,000 observations and 14 columns and represents a synthetic
+milling-process environment.
+The dataset includes machine operating parameters and failure labels. Our core predictive inputs are the five
+numerical machine parameters listed below.
+6. Parameters We Are Considering
+Parameter
+Unit
+Role in the system
+Air Temperature
+K
+Thermal/ambient operating condition.
+Process Temperature
+K
+Process thermal condition.
+Rotational Speed
+rpm
+Machine operating speed.
+Torque
+Nm
+Mechanical load.
+Tool Wear
+min
+Accumulated tool wear.
+Additional contextual parameter: Product Type
+The dataset contains Type values L, M and H. Type is not a sensor reading, but it is retained as context because the
+AI4I Overstrain Failure rule has different thresholds for L, M and H.
+Target labels
+- Machine Failure: overall machine-failure target.
+ 
+- TWF: Tool Wear Failure.
+ 
+- HDF: Heat Dissipation Failure.
+ 
+- PWF: Power Failure.
+ 
+- OSF: Overstrain Failure.
+ 
+- RNF: Random Failure.
+ 
+Important: Failure labels are targets used during training/evaluation. They are not inputs available when
+the system predicts a new machine condition.
+
+
+PAGE 5
+Predictive Maintenance Agent for Manufacturing
+Page 5
+7. Derived Calculations
+The five raw parameters are used to calculate additional indicators that help the system interpret machine behavior.
+7.1 Temperature Difference
+Temperature Difference = Process Temperature - Air Temperature
+This measures the thermal gap between the process and the surrounding air and is directly used in the AI4I Heat
+Dissipation Failure condition.
+7.2 Mechanical Power
+Power (W) = Torque x RPM x 2 x pi / 60
+This converts rotational speed and torque into approximate mechanical power and is used in the AI4I Power Failure
+condition.
+7.3 Overstrain Measure
+Overstrain Measure = Tool Wear x Torque
+This combines accumulated tool wear and mechanical load and is used in the AI4I Overstrain Failure condition.
+7.4 Tool Wear Condition
+Tool Wear is already a direct input. In the AI4I generation logic, Tool Wear Failure is associated with a tool-wear
+failure time between 200 and 240 minutes.
+8. Exact AI4I Failure Conditions
+These are dataset-specific conditions and should not be replaced with arbitrary project thresholds.
+Heat Dissipation Failure (HDF)
+Temperature Difference < 8.6 K AND Rotational Speed < 1380 rpm
+Power Failure (PWF)
+Power < 3500 W OR Power > 9000 W
+Overstrain Failure (OSF)
+Product Type
+OSF condition
+L
+Tool Wear x Torque > 11,000
+M
+Tool Wear x Torque > 12,000
+H
+Tool Wear x Torque > 13,000
+Tool Wear Failure (TWF)
+Associated with a randomly selected tool-wear failure time between 200 and 240 minutes in the dataset generation
+logic.
+Random Failure (RNF)
+Defined as a random failure with a 0.1 percent chance. It has no deterministic sensor threshold, so the system should
+not force a sensor-based root cause for RNF.
+
+
+PAGE 6
+Predictive Maintenance Agent for Manufacturing
+Page 6
+9. Failure Modes / Likely Root Causes
+Failure mode
+Main evidence
+Maintenance focus
+Tool Wear Failure
+High/critical tool-wear condition.
+Inspect or replace the tool.
+Heat Dissipation Failure
+Temperature difference below 8.6 K and RPM below 1380.
+Inspect cooling and heat-dissipation conditions.
+Power Failure
+Calculated power below 3500 W or above 9000 W.
+Inspect load, power delivery and drive system.
+Overstrain Failure
+Tool Wear x Torque exceeds Type-specific threshold.
+Inspect tool and excessive mechanical load.
+Random Failure
+No deterministic sensor pattern.
+Perform broader inspection; low causal certainty.
+These five categories directly correspond to the AI4I failure-mode labels. In the application, it is better to
+say likely failure mode or likely root cause rather than claiming that a sensor rule proves a physical root
+cause.
+10. How We Identify the Likely Cause
+Step 1: Read the five machine parameters.
+Step 2: Calculate temperature difference, mechanical power and overstrain measure.
+Step 3: Apply the relevant AI4I failure conditions.
+Step 4: Use the machine-learning model to estimate overall failure probability.
+Step 5: Predict or rank the possible failure modes.
+Step 6: Explain the prediction using the important parameters and supporting conditions.
+Step 7: Recommend the maintenance action associated with the most likely failure mode.
+Example
+Failure Risk: 82 percent
+Likely Failure Mode: Overstrain Failure
+Key Evidence: High torque + high tool wear
+Recommended Action: Inspect tool condition and machine load.
+
+
+PAGE 7
+Predictive Maintenance Agent for Manufacturing
+Page 7
+11. Predictive AI Layer
+The condition engine and the machine-learning model have different jobs.
+Layer
+Purpose
+Condition engine
+Uses calculations and known rules to detect abnormal conditions.
+ML prediction
+Learns historical patterns and estimates future failure risk.
+Failure-mode prediction
+Ranks the likely failure types.
+Explainability
+Shows which parameters contributed to the prediction.
+Recommendation
+Converts the predicted failure mode into a maintenance action.
+Training
+Historical machine parameters + Type -> historical failure labels -> trained model
+Prediction
+New machine parameters + Type -> model -> failure probability + failure-mode probabilities
+Explanation
+Prediction -> important parameters -> condition evidence -> human-readable reason
+12. Running Time, Idle Time and Downtime
+Running time, idle time and downtime are operational metrics. They should be treated separately from the predictive
+failure model.
+For a live manufacturing deployment, a timestamped sensor stream can be used to calculate machine states such as
+running, idle and down. The AI4I 2020 dataset itself should not be presented as a complete timestamped production
+log from which exact real-world downtime duration is automatically available.
+State
+Meaning
+Running
+Machine is actively operating.
+Idle
+Machine is available but not actively producing.
+Down
+Machine is stopped because of a confirmed fault, maintenance or failure.
+Key distinction: Condition analysis helps explain abnormal behavior; predictive maintenance estimates
+future failure risk; downtime analytics measures operational time.
+
+
+PAGE 8
+Predictive Maintenance Agent for Manufacturing
+Page 8
+13. Complete System Flow
+1. Data Input
+Air Temperature + Process Temperature + RPM + Torque + Tool Wear + Type
+2. Data Preparation
+Clean data, handle missing values, encode Type and prepare training/testing data.
+3. Condition Engine
+Calculate temperature difference, mechanical power and overstrain measure.
+4. Failure Condition Analysis
+Apply the AI4I HDF, PWF, OSF and TWF rules and account for RNF as random.
+5. Predictive Model
+Estimate overall machine-failure probability and rank failure modes.
+6. Explainability
+Show the important parameters and the conditions supporting the prediction.
+7. Recommendation Engine
+Map the predicted failure mode to a maintenance action.
+8. Dashboard / Agent
+Present health, risk, failure mode, evidence and recommended action.
+Final flow: Machine data -> Calculations -> Conditions -> Prediction -> Failure mode -> Explanation ->
+Maintenance
+14. Dashboard / Agent Output
+Section
+Information
+Machine Health
+Normal / Warning / High Risk / Critical.
+Sensor Values
+Air temperature, process temperature, RPM, torque and tool wear.
+Derived Values
+Temperature difference, power and overstrain measure.
+Failure Risk
+Predicted probability of failure.
+Failure Mode
+TWF, HDF, PWF, OSF or RNF.
+Explanation
+Important parameters and supporting conditions.
+Recommendation
+Suggested maintenance action.
+History
+Past predictions and parameter trends.
+15. Maintenance Recommendation Logic
+Failure mode
+Suggested action
+TWF
+Inspect or replace the tool.
+HDF
+Inspect cooling and heat-dissipation conditions.
+PWF
+Inspect load, power delivery and drive system.
+OSF
+Inspect tool and excessive mechanical load.
+RNF
+Perform broader inspection; do not claim a specific sensor cause.
+
+
+PAGE 9
+Predictive Maintenance Agent for Manufacturing
+Page 9
+16. Implementation Plan
+Phase
+Work
+1
+Load and inspect the AI4I dataset.
+2
+Select the five core parameters and retain Type as context.
+3
+Implement the dataset-specific condition calculations.
+4
+Train a model for overall Machine Failure.
+5
+Predict/rank TWF, HDF, PWF, OSF and RNF.
+6
+Add explainability.
+7
+Build maintenance recommendation mapping.
+8
+Build the dashboard/agent.
+9
+Evaluate precision, recall, F1-score, confusion matrix and failure-mode performance.
+17. What We Should Not Claim
+- The five sensor parameters alone do not physically prove every root cause.
+ 
+- The AI4I dataset is not a complete real-time downtime log.
+ 
+- Failure labels must not be used as prediction-time inputs.
+ 
+- Random Failure should not be given a forced sensor explanation.
+ 
+- Arbitrary thresholds should not replace dataset-defined failure rules.
+ 
+- A model prediction is a probability/risk estimate, not absolute certainty.
+ 
+18. Final Project Definition
+Sector: Manufacturing, kept generic.
+Problem: Unexpected machine failures interrupt production and increase operational risk.
+Users: Factory managers, maintenance teams, production supervisors, machine operators and plant management.
+Solution: A Predictive Maintenance Agent that analyzes machine parameters, detects abnormal behavior, predicts
+failure, identifies the likely failure mode, explains the result and recommends maintenance.
+Core inputs: Air Temperature, Process Temperature, Rotational Speed, Torque and Tool Wear.
+Context: Product Type L/M/H.
+Derived calculations: Temperature Difference, Mechanical Power and Overstrain Measure.
+Failure modes: Tool Wear Failure, Heat Dissipation Failure, Power Failure, Overstrain Failure and Random Failure.
+Final output: Failure probability + likely failure mode + evidence + maintenance recommendation.
+
+
+PAGE 10
+Predictive Maintenance Agent for Manufacturing
+Page 10
+19. Simple Example
+Suppose a machine has high torque and high tool wear.
+First, the system calculates the Overstrain Measure by multiplying Tool Wear by Torque.
+Next, it checks the threshold for the machine's Product Type.
+The ML model also examines the complete pattern of temperature, RPM, torque and tool wear learned from historical
+records.
+If the model predicts high failure risk and Overstrain Failure receives the highest failure-mode probability, the agent
+reports Overstrain Failure as the likely failure mode.
+The agent then explains the important indicators and recommends inspecting the tool and machine load.
+20. Final One-Line Concept
+Use five machine parameters to understand machine condition, calculate meaningful indicators, detect
+abnormal behavior, learn historical failure patterns, predict future failure, identify the likely failure mode,
+explain why, and recommend maintenance.
+21. Source Basis
+Primary dataset: Predictive Maintenance Dataset (AI4I 2020), Stephan Matzka, Kaggle.
+Dataset reference: AI4I 2020 Predictive Maintenance Dataset, UCI Machine Learning Repository.
+Scope decision: The project is kept at the generic manufacturing-sector level because the problem statement does
+not require restriction to one manufacturing sub-sector.
+Important dataset note: The AI4I data is synthetic and represents a milling-process environment. It is being used as a
+representative predictive-maintenance dataset for the broader manufacturing problem.

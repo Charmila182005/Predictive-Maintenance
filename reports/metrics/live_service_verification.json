@@ -1,0 +1,50 @@
+{
+  "/health": 200,
+  "/model-info": 200,
+  "/predict": {
+    "status": 200,
+    "failure_probability": 0.0
+  },
+  "/predict-batch": {
+    "status": 200,
+    "rows": 3
+  },
+  "/v1/health": 200,
+  "/v1/model-info": 200,
+  "/v1/predict": {
+    "status": 200,
+    "failure_probability": 0.0
+  },
+  "/v1/predict-batch": {
+    "status": 200,
+    "rows": 3
+  },
+  "high_risk_prediction": {
+    "failure_probability": 0.9531081590192291,
+    "health_status": "Critical",
+    "latency_ms": 658.670499920845
+  },
+  "invalid_input": {
+    "status": 422,
+    "response": {
+      "detail": [
+        {
+          "field": "body.torque",
+          "message": "Field required",
+          "type": "missing"
+        }
+      ],
+      "message": "Correct the sensor readings and units before retrying; no prediction was made."
+    }
+  },
+  "feedback": {
+    "status": "recorded",
+    "prediction_id": "1ed714fd-b39c-423d-8a72-d7b0513bc83d",
+    "retraining_triggered": false
+  },
+  "monitoring_status": 200,
+  "docs_status": 200,
+  "ui_http_status": 200,
+  "ui_health": "ok",
+  "processes_stopped": true
+}
