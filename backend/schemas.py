@@ -81,14 +81,16 @@ class MachineInput(BaseModel):
     # model features, so these can never leak into the model.
     # ---------------------------------------------------------
 
-    # Machine identifier (records which machine was assessed)
+    # Machine identifier
     machine_id: Optional[str] = Field(
         default=None,
         validation_alias=AliasChoices("machine_id", "machineId")
     )
 
     # Operating state of the machine
-    state: Optional[Literal["RUNNING", "IDLE"]] = Field(default=None)
+    state: Optional[Literal["RUNNING", "IDLE"]] = Field(
+        default=None
+    )
 
 
 # ---------------------------------------------------------
@@ -117,7 +119,7 @@ class FailureModeDetail(BaseModel):
     # Rank signal used to order the modes
     score: float
 
-    # Explains what `score` actually means (never a fake value)
+    # Explains what `score` actually means
     score_kind: str
 
     # Whether the deterministic condition rule supports this mode
@@ -138,7 +140,7 @@ class ContributingFeature(BaseModel):
     delta produced by the actual model.
     """
 
-    # Canonical feature key (matches the model input naming)
+    # Canonical feature key
     feature: str
 
     # Human-readable label for display
@@ -152,7 +154,8 @@ class ContributingFeature(BaseModel):
     magnitude: float
 
     # Signed indicator for the frontend parser:
-    # +1 = current value raises risk, -1 = lowers risk
+    # +1 = current value raises risk
+    # -1 = current value lowers risk
     sign: Literal[1, -1]
 
     # Whether the current value increases or decreases risk
@@ -183,15 +186,14 @@ class PredictionResponse(BaseModel):
 
     # Position of the anomaly score compared with
     # the training/reference distribution.
-    # Scale 0.0 - 100.0 (percentile rank against
-    # training normal scores)
+    # Scale 0.0 - 100.0
     anomaly_percentile: float
 
     # Whether the machine is considered anomalous
     is_anomaly: bool
 
     # Failure-mode probabilities produced by the
-    # failure-mode model (only modes with standalone models)
+    # failure-mode model
     failure_modes: Dict[str, float]
 
     # Overall health status.
@@ -204,38 +206,34 @@ class PredictionResponse(BaseModel):
     # Human-readable failure mode name
     failure_mode_name: Optional[str]
 
-    # Explanation of why the machine received
-    # this prediction
+    # Explanation of why the machine received this prediction
     explanation: str
 
-    # Recommended maintenance action (kept for compatibility)
+    # Recommended maintenance action
     maintenance_recommendation: str
 
     # -------------------------------------------------------
-    # EXTENDED FIELDS (frontend integration contract)
+    # EXTENDED FIELDS
     # -------------------------------------------------------
 
-    # Clean class label:
-    # e.g. "HDF" when a mode is identified, otherwise
-    # "NO FAILURE"/"FAILURE"
+    # Clean class label
+    # e.g. "HDF" when a mode is identified,
+    # otherwise "NO FAILURE"/"FAILURE"
     predicted_class: str
 
-    # Recommended maintenance action (frontend field name)
+    # Recommended maintenance action
     recommended_maintenance_action: str
 
     # Operating decision threshold selected during validation
     decision_threshold: float
 
-    # Policy label derived from the same probability bands
-    # used for health_status: Low / Medium / High / Critical
+    # Policy label derived from probability bands
     risk_level: str
 
-    # Policy label derived from risk_level:
-    # Routine / Scheduled / Urgent / Immediate
+    # Policy label derived from risk_level
     urgency: str
 
-    # Ranked failure-mode details (mode, name, probability,
-    # score, score_kind, supporting_condition, note)
+    # Ranked failure-mode details
     likely_failure_modes: List[FailureModeDetail]
 
     # Per-feature contribution to the failure probability
@@ -243,7 +241,7 @@ class PredictionResponse(BaseModel):
     contributing_features: List[ContributingFeature]
 
     # Human-readable trigger state for every deterministic
-    # condition rule (from configs/condition rules)
+    # condition rule
     condition_evidence: List[str]
 
     # Trained model version identifier
@@ -260,3 +258,8 @@ class PredictionResponse(BaseModel):
 
     # Decision-support disclaimer
     decision_support_notice: str
+
+    # AI-generated explanation from OpenRouter.
+    # Optional so the backend continues working if OpenRouter
+    # is unavailable or the API key is not configured.
+    ai_explanation: Optional[str] = None

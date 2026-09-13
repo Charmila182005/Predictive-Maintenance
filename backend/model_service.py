@@ -21,6 +21,7 @@ The returned response also exposes:
 - rich per-mode records (reusing FailureModeComponent.rank)
 - feature contributions (leave-one-out on the frozen model)
 - model metadata, decision threshold and decision-support notice
+- AI-generated explanation using OpenRouter
 """
 
 import json
@@ -41,6 +42,7 @@ from backend.decision_service import (
 )
 
 from src.condition_engine import condition_evidence
+from backend.openrouter_service import generate_ai_explanation
 
 
 logger = logging.getLogger(__name__)
@@ -138,6 +140,7 @@ logger.info(
     FAILURE_THRESHOLD
 )
 
+
 # ---------------------------------------------------------
 # Load the trained model version from the metadata file.
 # ---------------------------------------------------------
@@ -148,6 +151,7 @@ with open(METADATA_PATH, "r") as file:
     model_metadata = json.load(file)
 
 MODEL_VERSION = model_metadata["model_version"]
+
 
 # ---------------------------------------------------------
 # Load the decision-support notice from the maintenance
@@ -162,6 +166,7 @@ with open(MAINTENANCE_RULES_PATH, "r", encoding="utf-8") as file:
     maintenance_rules = yaml.safe_load(file)
 
 DECISION_SUPPORT_NOTICE = maintenance_rules["notice"]
+
 
 # ---------------------------------------------------------
 # Load the baseline (training median) feature values.
@@ -180,6 +185,7 @@ with open(BASELINE_PATH, "r") as file:
 # =========================================================
 # 6. POLICY MAPPINGS
 # =========================================================
+
 # These are fixed display vocabulary rules applied by the
 # application. They do NOT come from the ML models.
 
@@ -192,6 +198,7 @@ HEALTH_STATUS_DISPLAY = {
     "Critical": "Critical",
 }
 
+
 # Risk level uses the exact same probability bands as health_status.
 RISK_LEVEL = {
     "Normal": "Low",
@@ -200,6 +207,7 @@ RISK_LEVEL = {
     "Critical": "Critical",
 }
 
+
 # Urgency is a simple action-priority label for the UI.
 URGENCY = {
     "Normal": "Routine",
@@ -207,6 +215,7 @@ URGENCY = {
     "High": "Urgent",
     "Critical": "Immediate",
 }
+
 
 # Raw sensor features used for leave-one-out attribution.
 # These are the numeric inputs of the trained pipeline.
@@ -233,10 +242,12 @@ def _build_condition_evidence(evidence_rows: list) -> list:
     """
 
     entries = []
+
     for ev in evidence_rows:
 
         # measured can be empty (e.g. RNF has no sensor cause)
         measured = ev.get("measured") or {}
+
         if measured:
             measured_text = "; ".join(
                 f"{key}={value:g}"
@@ -261,6 +272,7 @@ def _map_likely_failure_modes(rank_items: list) -> list:
     """
 
     modes = []
+
     for item in rank_items:
 
         probability = item.get("probability")
@@ -273,7 +285,9 @@ def _map_likely_failure_modes(rank_items: list) -> list:
             ),
             "score": float(item["score"]),
             "score_kind": item["score_kind"],
-            "supporting_condition": bool(item["supporting_condition"]),
+            "supporting_condition": bool(
+                item["supporting_condition"]
+            ),
             "note": item.get("limitation"),
         })
 
@@ -297,18 +311,20 @@ def _compute_contributing_features(input_data: pd.DataFrame) -> list:
     )
 
     features = []
+
     for feature, label in CONTRIBUTING_FEATURES:
 
         # One-at-a-time replacement with the training baseline.
         perturbed_row = input_data.iloc[[0]].copy()
+
         perturbed_row[feature] = float(BASELINE[feature])
 
         perturbed_probability = float(
             main_model.predict_proba(perturbed_row)[0, 1]
         )
 
-        # Positive delta  -> the current value raises risk.
-        # Negative delta  -> the current value lowers risk.
+        # Positive delta -> the current value raises risk.
+        # Negative delta -> the current value lowers risk.
         delta = actual_probability - perturbed_probability
 
         features.append({
@@ -317,12 +333,19 @@ def _compute_contributing_features(input_data: pd.DataFrame) -> list:
             "value": float(input_data.iloc[0][feature]),
             "magnitude": round(abs(delta), 6),
             "sign": 1 if delta >= 0 else -1,
-            "direction": "increases" if delta >= 0 else "decreases",
-            "method": "leave_one_out_replacement_with_training_baseline",
+            "direction": (
+                "increases" if delta >= 0 else "decreases"
+            ),
+            "method": (
+                "leave_one_out_replacement_with_training_baseline"
+            ),
         })
 
     # Order by strongest contribution first.
-    features.sort(key=lambda item: item["magnitude"], reverse=True)
+    features.sort(
+        key=lambda item: item["magnitude"],
+        reverse=True
+    )
 
     return features
 
@@ -351,11 +374,14 @@ def predict_machine(
              ↓
         Decision layer
              ↓
+        OpenRouter AI explanation
+             ↓
         Complete application result
     """
 
-    # Start the latency measurement (covers the ML work below).
+    # Start the latency measurement.
     start_seconds = time.perf_counter()
+
 
     # =====================================================
     # CREATE INPUT DATAFRAME
@@ -386,9 +412,11 @@ def predict_machine(
     # The trained model uses a validation-selected threshold
     # instead of the default 0.50 threshold.
     # ---------------------------------------------------------
+
     predicted_failure = (
         failure_probability >= FAILURE_THRESHOLD
     )
+
 
     # =====================================================
     # 2. ANOMALY DETECTION
@@ -408,10 +436,12 @@ def predict_machine(
 
 
     # =====================================================
-    # 3. CONDITION EVIDENCE (reuses the existing rule engine)
+    # 3. CONDITION EVIDENCE
     # =====================================================
 
-    evidence_rows = condition_evidence(input_data.iloc[0])
+    evidence_rows = condition_evidence(
+        input_data.iloc[0]
+    )
 
     condition_evidence_list = _build_condition_evidence(
         evidence_rows
@@ -424,6 +454,7 @@ def predict_machine(
 
     # probabilities() -> only modes with standalone models.
     # rank()          -> richer records for every mode.
+
     mode_probabilities = failure_mode_model.probabilities(
         input_data
     )
@@ -438,7 +469,9 @@ def predict_machine(
         evidence_rows
     )
 
-    likely_failure_modes = _map_likely_failure_modes(rank_items)
+    likely_failure_modes = _map_likely_failure_modes(
+        rank_items
+    )
 
 
     # =====================================================
@@ -450,11 +483,17 @@ def predict_machine(
     )
 
     # Frontend contract uses "High Risk" instead of "High".
-    health_status = HEALTH_STATUS_DISPLAY[backend_health_status]
+    health_status = HEALTH_STATUS_DISPLAY[
+        backend_health_status
+    ]
 
-    risk_level = RISK_LEVEL[backend_health_status]
+    risk_level = RISK_LEVEL[
+        backend_health_status
+    ]
 
-    urgency = URGENCY[backend_health_status]
+    urgency = URGENCY[
+        backend_health_status
+    ]
 
 
     # =====================================================
@@ -467,20 +506,56 @@ def predict_machine(
         tool_wear=tool_wear
     )
 
-    if predicted_failure and maintenance_info["failure_mode"]:
+    if (
+        predicted_failure
+        and maintenance_info["failure_mode"]
+    ):
         predicted_class = maintenance_info["failure_mode"]
+
     elif not predicted_failure:
         predicted_class = "NO FAILURE"
+
     else:
         predicted_class = "FAILURE"
 
 
     # =====================================================
-    # 7. FEATURE CONTRIBUTIONS (leave-one-out on the model)
+    # 7. FEATURE CONTRIBUTIONS
     # =====================================================
 
     contributing_features = _compute_contributing_features(
         input_data
+    )
+
+
+    # =====================================================
+    # 7A. AI EXPLANATION USING OPENROUTER
+    # =====================================================
+
+    ai_explanation = generate_ai_explanation(
+        machine_data={
+            "product_type": product_type,
+            "air_temperature": air_temperature,
+            "process_temperature": process_temperature,
+            "rotational_speed": rotational_speed,
+            "torque": torque,
+            "tool_wear": tool_wear,
+        },
+        prediction_data={
+            "failure_probability": failure_probability,
+            "predicted_failure": predicted_failure,
+            "failure_mode": maintenance_info["failure_mode"],
+            "failure_mode_name": maintenance_info["failure_mode_name"],
+            "risk_level": risk_level,
+            "urgency": urgency,
+            "maintenance_recommendation": (
+                maintenance_info[
+                    "maintenance_recommendation"
+                ]
+            ),
+            "condition_evidence": condition_evidence_list,
+            "contributing_features": contributing_features,
+        },
     )
 
 
@@ -490,7 +565,9 @@ def predict_machine(
 
     prediction_id = uuid.uuid4().hex[:12]
 
-    prediction_timestamp = datetime.now(timezone.utc).isoformat()
+    prediction_timestamp = (
+        datetime.now(timezone.utc).isoformat()
+    )
 
     latency_ms = round(
         (time.perf_counter() - start_seconds) * 1000,
@@ -503,19 +580,38 @@ def predict_machine(
     # =====================================================
 
     return {
+
+        # -------------------------------------------------
         # Overall prediction
+        # -------------------------------------------------
+
         "failure_probability": failure_probability,
+
         "predicted_failure": predicted_failure,
 
+
+        # -------------------------------------------------
         # Anomaly information
+        # -------------------------------------------------
+
         "anomaly_score": anomaly_score,
+
         "anomaly_percentile": anomaly_percentile,
+
         "is_anomaly": is_anomalous,
 
-        # Failure modes (probabilities only)
+
+        # -------------------------------------------------
+        # Failure modes
+        # -------------------------------------------------
+
         "failure_modes": failure_modes,
 
+
+        # -------------------------------------------------
         # Decision layer
+        # -------------------------------------------------
+
         "health_status": health_status,
 
         "failure_mode": (
@@ -536,25 +632,38 @@ def predict_machine(
             ]
         ),
 
+
+        # -------------------------------------------------
         # Extended frontend contract fields
         # -------------------------------------------------
+
         "predicted_class": predicted_class,
 
         "recommended_maintenance_action": (
-            maintenance_info["maintenance_recommendation"]
+            maintenance_info[
+                "maintenance_recommendation"
+            ]
         ),
 
-        "decision_threshold": float(FAILURE_THRESHOLD),
+        "decision_threshold": float(
+            FAILURE_THRESHOLD
+        ),
 
         "risk_level": risk_level,
 
         "urgency": urgency,
 
-        "likely_failure_modes": likely_failure_modes,
+        "likely_failure_modes": (
+            likely_failure_modes
+        ),
 
-        "contributing_features": contributing_features,
+        "contributing_features": (
+            contributing_features
+        ),
 
-        "condition_evidence": condition_evidence_list,
+        "condition_evidence": (
+            condition_evidence_list
+        ),
 
         "model_version": MODEL_VERSION,
 
@@ -564,7 +673,16 @@ def predict_machine(
 
         "latency_ms": latency_ms,
 
-        "decision_support_notice": DECISION_SUPPORT_NOTICE,
+        "decision_support_notice": (
+            DECISION_SUPPORT_NOTICE
+        ),
+
+
+        # -------------------------------------------------
+        # OpenRouter AI explanation
+        # -------------------------------------------------
+
+        "ai_explanation": ai_explanation,
     }
 
 
