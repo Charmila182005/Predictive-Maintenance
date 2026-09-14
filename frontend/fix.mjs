@@ -1,0 +1,11 @@
+﻿const fs = require("fs");
+const f = "src/lib/api/gradio.ts";
+let s = fs.readFileSync(f, "utf8");
+s = s.replaceAll("name: String(rec.name ?? FAILURE_NAME(code))", "name: String(rec.name ?? failureName(code))");
+s = s.replaceAll("out.unshift({ code, name: FAILURE_NAME(code), confidence: 1 })", "out.unshift({ code, name: failureName(code), confidence: 1 })");
+s = s.replaceAll("out.push({ code, name: FAILURE_NAME(code) });", "out.push({ code, name: failureName(code) });");
+s = s.replace('String(rec.label ?? rawKey || key)', 'String((rec.label ?? rawKey) || key)');
+s = s.replace('modeTag(code)', 'failureName(code)');
+s = s.replaceAll('modeTag(code.replace(/\\/g, ""))', "failureName(code)");
+fs.writeFileSync(f, s);
+console.log("done");

@@ -1,0 +1,5 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { cn } from "@/lib/utils/cn";
+export function EmptyState({ icon: Icon, eyebrow, title, description, action, className, }) {
+    return (_jsxs("div", { className: cn("flex flex-col items-center justify-center gap-4 rounded-lg border border-hairline bg-surface/30 px-6 py-14 text-center", className), children: [_jsx("div", { className: "flex h-11 w-11 items-center justify-center rounded-lg border border-hairline bg-raised/60 text-ink-3", children: _jsx(Icon, { className: "h-[18px] w-[18px]", strokeWidth: 1.4 }) }), eyebrow && (_jsx("p", { className: "font-mono text-[9px] uppercase tracking-[0.24em] text-ink-3", children: eyebrow })), _jsxs("div", { className: "max-w-sm", children: [_jsx("h3", { className: "text-sm font-medium text-ink", children: title }), description && _jsx("p", { className: "mt-1.5 text-[13px] leading-relaxed text-ink-2", children: description })] }), action && _jsx("div", { className: "mt-1 flex items-center gap-2", children: action })] }));
+}

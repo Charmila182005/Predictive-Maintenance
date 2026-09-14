@@ -113,3 +113,6 @@ runs/
 mlruns/
 outputs/
 artifacts/
+
+# TypeScript build cache
+*.tsbuildinfo
